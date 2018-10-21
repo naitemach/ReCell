@@ -1,2 +1,7 @@
 virtualenv
+db.sqlite3
 *.pyc
+*.log
+*.pot
+__pycache__/
+local_settings.py
