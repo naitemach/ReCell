@@ -39,3 +39,17 @@ ReCell directory and run:
 
    Then, you can open up the project in your browser.  You should see a message
    telling you that you've finished setting up.
+   
+## Git Cheat 
+1. Make your branch
+    ```
+    git branch branchname
+    ```
+2. Checking out / Using your branch
+    ```
+    git checkout branchname
+3. Add your changes and commit.
+   Push your code to your branch and make a pull request
+   ```
+   git push origin branchname
+   ```
