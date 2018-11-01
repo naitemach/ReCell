@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import LoginForm
-from .models import User
+# from .models import User
 
 
 def login(request):
@@ -25,7 +25,7 @@ def login(request):
 
 
 def index(request):
-    return render(request, 'store/index.html', {})
+    return render(request, 'store/login.html', {})
 
 
 def profile(request):
@@ -39,6 +39,6 @@ def home(request):
 def search(request):
     return HttpResponse("Hello, world. You're at the polls search.")
 
-def display(request):
-    users = User.objects.all()
-    return render(request,'store/display.html',{'user': users})
+# def display(request):
+#     users = User.objects.all()
+#     return render(request,'store/display.html',{'user': users})
