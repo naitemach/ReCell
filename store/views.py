@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import LoginForm
-# from .models import User
-
+from .models import Item, ItemDesc
+from django.db import connection
 
 def login(request):
     # if this is a POST request we need to process the form data
@@ -15,7 +15,7 @@ def login(request):
             # ...
             # redirect to a new URL:
             email = form.cleaned_data['email']
-            return render(request, 'store/form.html', {'form': form,'email':email})
+            return render(request, 'store/form.html', {'form': form, 'email': email})
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -45,6 +45,13 @@ def register(request):
 def search(request):
     return HttpResponse("Hello, world. You're at the polls search.")
 
-# def display(request):
-#     users = User.objects.all()
-#     return render(request,'store/display.html',{'user': users})
+
+def display(request):
+    cursor = connection.cursor()
+    cursor.execute('SELECT * FROM store_item')
+    item = cursor.fetchone()
+    id = item[2]
+    cursor.execute('SELECT * FROM store_itemdesc where item_desc_id = %s',[id])
+    itemdesc = cursor.fetchone()
+
+    return render(request, 'store/display.html', {'item': item,'itemdesc': itemdesc})
