@@ -1,4 +1,4 @@
-﻿{% load static%}
+{% load static%}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -39,13 +39,13 @@
 	<div class="span6">Welcome!<strong> User</strong></div>
 	<div class="span6">
 	<div class="pull-right">
-		<a href="{% static 'store/product' %}_summary.html"><span class="">Fr</span></a>
-		<a href="{% static 'store/product' %}_summary.html"><span class="">Es</span></a>
+		<a href="{% static 'store/product_summary.html' %}"><span class="">Fr</span></a>
+		<a href="{% static 'store/product_summary.html' %}"><span class="">Es</span></a>
 		<span class="btn btn-mini">En</span>
-		<a href="{% static 'store/product' %}_summary.html"><span>&pound;</span></a>
+		<a href="{% static 'store/product_summary.html' %}"><span>&pound;</span></a>
 		<span class="btn btn-mini">$155.00</span>
-		<a href="{% static 'store/product' %}_summary.html"><span class="">$</span></a>
-		<a href="{% static 'store/product' %}_summary.html"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> [ 3 ] Itemes in your cart </span> </a> 
+		<a href="{% static 'store/product_summary.html' %}"><span class="">$</span></a>
+		<a href="{% static 'store/product_summary.html' %}"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> [ 3 ] Itemes in your cart </span> </a> 
 	</div>
 	</div>
 </div>
@@ -71,14 +71,14 @@
 		  <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
     </form>
     <ul id="topMenu" class="nav pull-right">
-	 <li class=""><a href="{% static 'store/special' %}_offer.html">Specials Offer</a></li>
+	 <li class=""><a href="{% static 'store/special_offer.html' %}">Specials Offer</a></li>
 	 <li class=""><a href="{% static 'store/normal.html' %}">Delivery</a></li>
 	 <li class=""><a href="{% static 'store/contact.html' %}">Contact</a></li>
 	 <li class="">
-	 <a href="{% static 'store/#login' %}" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
+	 <a href="{% static 'store/#' %}login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
 	<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
 		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 			<h3>Login Block</h3>
 		  </div>
 		  <div class="modal-body">
@@ -106,76 +106,12 @@
 </div>
 </div>
 <!-- Header End====================================================================== -->
-<div id="carouselBlk">
-	<div id="myCarousel" class="carousel slide">
-		<div class="carousel-inner">
-		  <div class="item active">
-		  <div class="container">
-			<a href="{% static 'store/register.html' %}"><img style="width:100%" src="{% static 'store/themes/images/carousel/1.png' %}" alt="special offers"/></a>
-			<div class="carousel-caption">
-				  <h4>Second Thumbnail label</h4>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				</div>
-		  </div>
-		  </div>
-		  <div class="item">
-		  <div class="container">
-			<a href="{% static 'store/register.html' %}"><img style="width:100%" src="{% static 'store/themes/images/carousel/2.png' %}" alt=""/></a>
-				<div class="carousel-caption">
-				  <h4>Second Thumbnail label</h4>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				</div>
-		  </div>
-		  </div>
-		  <div class="item">
-		  <div class="container">
-			<a href="{% static 'store/register.html' %}"><img src="{% static 'store/themes/images/carousel/3.png' %}" alt=""/></a>
-			<div class="carousel-caption">
-				  <h4>Second Thumbnail label</h4>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				</div>
-			
-		  </div>
-		  </div>
-		   <div class="item">
-		   <div class="container">
-			<a href="{% static 'store/register.html' %}"><img src="{% static 'store/themes/images/carousel/4.png' %}" alt=""/></a>
-			<div class="carousel-caption">
-				  <h4>Second Thumbnail label</h4>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				</div>
-		   
-		  </div>
-		  </div>
-		   <div class="item">
-		   <div class="container">
-			<a href="{% static 'store/register.html' %}"><img src="{% static 'store/themes/images/carousel/5.png' %}" alt=""/></a>
-			<div class="carousel-caption">
-				  <h4>Second Thumbnail label</h4>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-			</div>
-		  </div>
-		  </div>
-		   <div class="item">
-		   <div class="container">
-			<a href="{% static 'store/register.html' %}"><img src="{% static 'store/themes/images/carousel/6.png' %}" alt=""/></a>
-			<div class="carousel-caption">
-				  <h4>Second Thumbnail label</h4>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				</div>
-		  </div>
-		  </div>
-		</div>
-		<a class="left carousel-control" href="{% static 'store/#myCarousel' %}" data-slide="prev">&lsaquo;</a>
-		<a class="right carousel-control" href="{% static 'store/#myCarousel' %}" data-slide="next">&rsaquo;</a>
-	  </div> 
-</div>
 <div id="mainBody">
 	<div class="container">
 	<div class="row">
 <!-- Sidebar ================================================== -->
 	<div id="sidebar" class="span3">
-		<div class="well well-small"><a id="myCart" href="{% static 'store/product' %}_summary.html"><img src="{% static 'store/themes/images/ico-cart.png' %}" alt="cart">3 Items in your cart  <span class="badge badge-warning pull-right">$155.00</span></a></div>
+		<div class="well well-small"><a id="myCart" href="{% static 'store/product_summary.html' %}"><img src="{% static 'store/themes/images/ico-cart.png' %}" alt="cart">3 Items in your cart  <span class="badge badge-warning pull-right">$155.00</span></a></div>
 		<ul id="sideManu" class="nav nav-tabs nav-stacked">
 			<li class="subMenu open"><a> ELECTRONICS [230]</a>
 				<ul>
@@ -217,283 +153,326 @@
 			<img src="{% static 'store/themes/images/products/panasonic.jpg' %}" alt="Bootshop panasonoc New camera"/>
 			<div class="caption">
 			  <h5>Panasonic</h5>
-				<h4 style="text-align:center"><a class="btn" href="{% static 'store/product' %}_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">$222.00</a></h4>
+				<h4 style="text-align:center"><a class="btn" href="{% static 'store/product_details.html' %}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">$222.00</a></h4>
 			</div>
-		  </div><br/>
+		  </div><br/>href="{% static 
 			<div class="thumbnail">
 				<img src="{% static 'store/themes/images/products/kindle.png' %}" title="Bootshop New Kindel" alt="Bootshop Kindel">
 				<div class="caption">
 				  <h5>Kindle</h5>
-				    <h4 style="text-align:center"><a class="btn" href="{% static 'store/product' %}_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">$222.00</a></h4>
+				    <h4 style="text-align:center"><a class="btn" href="{% static 'store/product_details.html' %}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">$222.00</a></h4>
 				</div>
 			  </div><br/>
 			<div class="thumbnail">
-				<img src="{% static 'store/themes/images/payment' %}_methods.png" title="Bootshop Payment Methods" alt="Payments Methods">
+				<img src="{% static 'store/themes/images/payment_methods.png' %}" title="Bootshop Payment Methods" alt="Payments Methods">
 				<div class="caption">
 				  <h5>Payment Methods</h5>
 				</div>
 			  </div>
 	</div>
 <!-- Sidebar end=============================================== -->
-		<div class="span9">		
-			<div class="well well-small">
-			<h4>Featured Products <small class="pull-right">200+ featured products</small></h4>
-			<div class="row-fluid">
-			<div id="featured" class="carousel slide">
-			<div class="carousel-inner">
-			  <div class="item active">
-			  <ul class="thumbnails">
-				<li class="span3">
-				  <div class="thumbnail">
-				  <i class="tag"></i>
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b1.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-				  <i class="tag"></i>
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b2.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-				  <i class="tag"></i>
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b3.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					   <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-				  <i class="tag"></i>
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b4.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					   <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
-			  </ul>
-			  </div>
-			   <div class="item">
-			  <ul class="thumbnails">
-				<li class="span3">
-				  <div class="thumbnail">
-				  <i class="tag"></i>
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/5.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-				  <i class="tag"></i>
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/6.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/7.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					   <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/8.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					   <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
-			  </ul>
-			  </div>
-			   <div class="item">
-			  <ul class="thumbnails">
-				<li class="span3">
-				  <div class="thumbnail">
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/9.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/10.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/11.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					   <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/1.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					   <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
-			  </ul>
-			  </div>
-			   <div class="item">
-			  <ul class="thumbnails">
-				<li class="span3">
-				  <div class="thumbnail">
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/2.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/4.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					   <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/5.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					   <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
-			  </ul>
-			  </div>
-			  </div>
-			  <a class="left carousel-control" href="{% static 'store/#featured' %}" data-slide="prev">‹</a>
-			  <a class="right carousel-control" href="{% static 'store/#featured' %}" data-slide="next">›</a>
-			  </div>
-			  </div>
+	<div class="span9">
+    <ul class="breadcrumb">
+		<li><a href="{% static 'store/index.html' %}">Home</a> <span class="divider">/</span></li>
+		<li class="active">Products Name</li>
+    </ul>
+	<h3> Products Name <small class="pull-right"> 40 products are available </small></h3>	
+	<hr class="soft"/>
+	<p>
+		Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies - that is why our goods are so popular and we have a great number of faithful customers all over the country.
+	</p>
+	<hr class="soft"/>
+	<form class="form-horizontal span6">
+		<div class="control-group">
+		  <label class="control-label alignL">Sort By </label>
+			<select>
+              <option>Priduct name A - Z</option>
+              <option>Priduct name Z - A</option>
+              <option>Priduct Stoke</option>
+              <option>Price Lowest first</option>
+            </select>
 		</div>
-		<h4>Latest Products </h4>
-			  <ul class="thumbnails">
-				<li class="span3">
-				  <div class="thumbnail">
-					<a  href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/6.jpg' %}" alt=""/></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <p> 
-						Lorem Ipsum is simply dummy text. 
-					  </p>
-					 
-					  <h4 style="text-align:center"><a class="btn" href="{% static 'store/product' %}_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">$222.00</a></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a  href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/7.jpg' %}" alt=""/></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <p> 
-						Lorem Ipsum is simply dummy text. 
-					  </p>
-					 <h4 style="text-align:center"><a class="btn" href="{% static 'store/product' %}_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">$222.00</a></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a  href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/8.jpg' %}" alt=""/></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <p> 
-						Lorem Ipsum is simply dummy text. 
-					  </p>
-					   <h4 style="text-align:center"><a class="btn" href="{% static 'store/product' %}_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">$222.00</a></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a  href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/9.jpg' %}" alt=""/></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <p> 
-						Lorem Ipsum is simply dummy text. 
-					  </p>
-					  <h4 style="text-align:center"><a class="btn" href="{% static 'store/product' %}_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">$222.00</a></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a  href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/10.jpg' %}" alt=""/></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <p> 
-						Lorem Ipsum is simply dummy text. 
-					  </p>
-					  <h4 style="text-align:center"><a class="btn" href="{% static 'store/product' %}_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">$222.00</a></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a  href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/11.jpg' %}" alt=""/></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <p> 
-						Lorem Ipsum is simply dummy text. 
-					  </p>
-					   <h4 style="text-align:center"><a class="btn" href="{% static 'store/product' %}_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">$222.00</a></h4>
-					</div>
-				  </div>
-				</li>
-			  </ul>	
+	  </form>
+	  
+<div id="myTab" class="pull-right">
+ <a href="{% static 'store/#' %}listView" data-toggle="tab"><span class="btn btn-large"><i class="icon-list"></i></span></a>
+ <a href="{% static 'store/#' %}blockView" data-toggle="tab"><span class="btn btn-large btn-primary"><i class="icon-th-large"></i></span></a>
+</div>
+<br class="clr"/>
+<div class="tab-content">
+	<div class="tab-pane" id="listView">
+		<div class="row">	  
+			<div class="span2">
+				<img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/>
+			</div>
+			<div class="span4">
+				<h3>New | Available</h3>				
+				<hr class="soft"/>
+				<h5>Product Name </h5>
+				<p>
+				Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies - 
+				that is why our goods are so popular..
+				</p>
+				<a class="btn btn-small pull-right" href="{% static 'store/product_details.html' %}">View Details</a>
+				<br class="clr"/>
+			</div>
+			<div class="span3 alignR">
+			<form class="form-horizontal qtyFrm">
+			<h3> $140.00</h3>
+			<label class="checkbox">
+				<input type="checkbox">  Adds product to compair
+			</label><br/>
+			
+			  <a href="{% static 'store/product_details.html' %}" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
+			  <a href="{% static 'store/product_details.html' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
+			
+				</form>
+			</div>
+		</div>
+		<hr class="soft"/>
+		<div class="row">	  
+			<div class="span2">
+				<img src="{% static 'store/themes/images/products/1.jpg' %}" alt=""/>
+			</div>
+			<div class="span4">
+				<h3>New | Available</h3>				
+				<hr class="soft"/>
+				<h5>Product Name </h5>
+				<p>
+				Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies - 
+				that is why our goods are so popular..
+				</p>
+				<a class="btn btn-small pull-right" href="{% static 'store/product_details.html' %}">View Details</a>
+				<br class="clr"/>
+			</div>
+			<div class="span3 alignR">
+			<form class="form-horizontal qtyFrm">
+				<h3> $140.00</h3>
+				<label class="checkbox">
+				<input type="checkbox">  Adds product to compair
+				</label><br/>
+				
+				<a href="{% static 'store/product_details.html' %}" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
+				<a href="{% static 'store/product_details.html' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
+				
+			</form>
+			</div>
+		</div>
+		<hr class="soft"/>
+		<div class="row">	  
+			<div class="span2">
+				<img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/>
+			</div>
+			<div class="span4">
+				<h3>New | Available</h3>				
+				<hr class="soft"/>
+				<h5>Product Name </h5>
+				<p>
+				Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies - 
+				that is why our goods are so popular..
+				</p>
+				<a class="btn btn-small pull-right" href="{% static 'store/product_details.html' %}">View Details</a>
+				<br class="clr"/>
+			</div>
+			<div class="span3 alignR">
+			<form class="form-horizontal qtyFrm">
+				<h3> $140.00</h3>
+				<label class="checkbox">
+					<input type="checkbox">  Adds product to compair
+				</label><br/>
+				
+				  <a href="{% static 'store/product_details.html' %}" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
+				  <a href="{% static 'store/product_details.html' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
+				
+			</form>
+			</div>
+		</div>
+		<hr class="soft"/>
+		<div class="row">	  
+			<div class="span2">
+				<img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/>
+			</div>
+			<div class="span4">
+				<h3>New | Available</h3>				
+				<hr class="soft"/>
+				<h5>Product Name </h5>
+				<p>
+				Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies - 
+				that is why our goods are so popular..
+				</p>
+				<a class="btn btn-small pull-right" href="{% static 'store/product_details.html' %}">View Details</a>
+				<br class="clr"/>
+			</div>
+			<div class="span3 alignR">
+				<form class="form-horizontal qtyFrm">
+				<h3> $140.00</h3>
+				<label class="checkbox">
+				<input type="checkbox">  Adds product to compair
+				</label><br/>
+				
+				<a href="{% static 'store/product_details.html' %}" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
+				<a href="{% static 'store/product_details.html' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
+				
+				</form>
+			</div>
+		</div>
+	
+		<hr class="soft"/>
+		<div class="row">	  
+			<div class="span2">
+				<img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/>
+			</div>
+			<div class="span4">
+				<h3>New | Available</h3>				
+				<hr class="soft"/>
+				<h5>Product Name </h5>
+				<p>
+				Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies - 
+				that is why our goods are so popular..
+				</p>
+				<a class="btn btn-small pull-right" href="{% static 'store/product_details.html' %}">View Details</a>
+				<br class="clr"/>
+			</div>
+			<div class="span3 alignR">
+				<form class="form-horizontal qtyFrm">
+				<h3> $140.00</h3>
+				<label class="checkbox">
+				<input type="checkbox">  Adds product to compair
+				</label><br/>
+				<a href="{% static 'store/product_details.html' %}" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
+				<a href="{% static 'store/product_details.html' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
+				</form>
+			</div>
+		</div>
+		<hr class="soft"/>
+		<div class="row">	  
+			<div class="span2">
+				<img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/>
+			</div>
+			<div class="span4">
+				<h3>New | Available</h3>				
+				<hr class="soft"/>
+				<h5>Product Name </h5>
+				<p>
+				Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies - 
+				that is why our goods are so popular..
+				</p>
+				<a class="btn btn-small pull-right" href="{% static 'store/product_details.html' %}">View Details</a>
+				<br class="clr"/>
+			</div>
+			<div class="span3 alignR">
+				<form class="form-horizontal qtyFrm">
+				<h3> $140.00</h3>
+				<label class="checkbox">
+				<input type="checkbox">  Adds product to compair
+				</label><br/>
+				
+				<a href="{% static 'store/product_details.html' %}" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
+				<a href="{% static 'store/product_details.html' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
+				
+				</form>
+			</div>
+		</div>
+		<hr class="soft"/>
+	</div>
 
-		</div>
-		</div>
+	<div class="tab-pane  active" id="blockView">
+		<ul class="thumbnails">
+			<li class="span3">
+			  <div class="thumbnail">
+				<a href="{% static 'store/product_details.html' %}"><img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/></a>
+				<div class="caption">
+				  <h5>Manicure &amp; Pedicure</h5>
+				  <p> 
+					I'm a paragraph. Click here 
+				  </p>
+				   <h4 style="text-align:center"><a class="btn" href="{% static 'store/product_details.html' %}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">&euro;222.00</a></h4>
+				</div>
+			  </div>
+			</li>
+			<li class="span3">
+			  <div class="thumbnail">
+				<a href="{% static 'store/product_details.html' %}"><img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/></a>
+				<div class="caption">
+				  <h5>Manicure &amp; Pedicure</h5>
+				  <p> 
+					I'm a paragraph. Click here 
+				  </p>
+				   <h4 style="text-align:center"><a class="btn" href="{% static 'store/product_details.html' %}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">&euro;222.00</a></h4>
+				</div>
+			  </div>
+			</li>
+			<li class="span3">
+			  <div class="thumbnail">
+				<a href="{% static 'store/product_details.html' %}"><img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/></a>
+				<div class="caption">
+				  <h5>Manicure &amp; Pedicure</h5>
+				  <p> 
+					I'm a paragraph. Click here 
+				  </p>
+				    <h4 style="text-align:center"><a class="btn" href="{% static 'store/product_details.html' %}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">&euro;222.00</a></h4>
+				</div>
+			  </div>
+			</li>
+			<li class="span3">
+			  <div class="thumbnail">
+				<a href="{% static 'store/product_details.html' %}"><img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/></a>
+				<div class="caption">
+				  <h5>Manicure &amp; Pedicure</h5>
+				  <p> 
+					I'm a paragraph. Click here 
+				  </p>
+				    <h4 style="text-align:center"><a class="btn" href="{% static 'store/product_details.html' %}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">&euro;222.00</a></h4>
+				</div>
+			  </div>
+			</li>
+			<li class="span3">
+			  <div class="thumbnail">
+				<a href="{% static 'store/product_details.html' %}"><img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/></a>
+				<div class="caption">
+				  <h5>Manicure &amp; Pedicure</h5>
+				  <p> 
+					I'm a paragraph. Click here 
+				  </p>
+				    <h4 style="text-align:center"><a class="btn" href="{% static 'store/product_details.html' %}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">&euro;222.00</a></h4>
+				</div>
+			  </div>
+			</li>
+			<li class="span3">
+			  <div class="thumbnail">
+				<a href="{% static 'store/product_details.html' %}"><img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/></a>
+				<div class="caption">
+				  <h5>Manicure &amp; Pedicure</h5>
+				  <p> 
+					I'm a paragraph. Click here 
+				  </p>
+				    <h4 style="text-align:center"><a class="btn" href="{% static 'store/product_details.html' %}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">&euro;222.00</a></h4>
+				</div>
+			  </div>
+			</li>
+		  </ul>
+	<hr class="soft"/>
 	</div>
 </div>
+
+	<a href="{% static 'store/compair.html' %}" class="btn btn-large pull-right">Compair Product</a>
+	<div class="pagination">
+			<ul>
+			<li><a href="{% static 'store/#' %}">&lsaquo;</a></li>
+			<li><a href="{% static 'store/#' %}">1</a></li>
+			<li><a href="{% static 'store/#' %}">2</a></li>
+			<li><a href="{% static 'store/#' %}">3</a></li>
+			<li><a href="{% static 'store/#' %}">4</a></li>
+			<li><a href="{% static 'store/#' %}">...</a></li>
+			<li><a href="{% static 'store/#' %}">&rsaquo;</a></li>
+			</ul>
+			</div>
+			<br class="clr"/>
+</div>
+</div>
+</div>
+</div>
+<!-- MainBody End ============================= -->
 <!-- Footer ================================================================== -->
 	<div  id="footerSection">
 	<div class="container">
@@ -510,7 +489,7 @@
 				<h5>INFORMATION</h5>
 				<a href="{% static 'store/contact.html' %}">CONTACT</a>  
 				<a href="{% static 'store/register.html' %}">REGISTRATION</a>  
-				<a href="{% static 'store/legal' %}_notice.html">LEGAL NOTICE</a>  
+				<a href="{% static 'store/legal_notice.html' %}">LEGAL NOTICE</a>  
 				<a href="{% static 'store/tac.html' %}">TERMS AND CONDITIONS</a> 
 				<a href="{% static 'store/faq.html' %}">FAQ</a>
 			 </div>
@@ -518,7 +497,7 @@
 				<h5>OUR OFFERS</h5>
 				<a href="{% static 'store/#' %}">NEW PRODUCTS</a> 
 				<a href="{% static 'store/#' %}">TOP SELLERS</a>  
-				<a href="{% static 'store/special' %}_offer.html">SPECIAL OFFERS</a>  
+				<a href="{% static 'store/special_offer.html' %}">SPECIAL OFFERS</a>  
 				<a href="{% static 'store/#' %}">MANUFACTURERS</a> 
 				<a href="{% static 'store/#' %}">SUPPLIERS</a> 
 			 </div>

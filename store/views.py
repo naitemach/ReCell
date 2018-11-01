@@ -25,7 +25,7 @@ def login(request):
 
 
 def index(request):
-    return render(request, 'store/login.html', {})
+    return render(request, 'store/index.html', {})
 
 
 def profile(request):
@@ -35,6 +35,12 @@ def profile(request):
 def home(request):
     return HttpResponse("Hello, world. You're at the polls home.")
 
+def products(request):
+    return render(request, 'store/products.html',{})
+
+
+def register(request):
+    return render(request, 'store/register.html',{})
 
 def search(request):
     return HttpResponse("Hello, world. You're at the polls search.")
