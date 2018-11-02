@@ -12,5 +12,7 @@ urlpatterns = [
     path('display', views.display, name='display'),
     path('products', views.products, name='products'),
     path('register', views.register, name='register'),
+    path('productReg', views.productReg, name='productReg'),
+
     # static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ]

@@ -62,8 +62,14 @@ def register(request):
                 return render(request, 'store/register.html', {'error': error})
             first_name = form.cleaned_data['first_name']
             email = form.cleaned_data['email']
+            obj = User.objects.create()
+            obj.email = email
+            obj.first_name = form.cleaned_data['first_name']
+            obj.last_name = form.cleaned_data['last_name']
+            obj.password = form.cleaned_data['password']
+            
             request.session['email'] = email
-            request.session['username'] = user_obj.get().first_name
+            request.session['first_name'] = user_obj.get().first_name
             request.session['id'] = user_obj.get().u_id
             return render(request, 'store/index.html', {'username': request.session['username']})
 
@@ -90,3 +96,6 @@ def display(request):
     itemdesc = cursor.fetchone()
 
     return render(request, 'store/display.html', {'item': item, 'itemdesc': itemdesc})
+
+def productReg(request):
+    return render(request, 'store/product_reg.html', {})
