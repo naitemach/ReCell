@@ -25,7 +25,7 @@ def login(request):
 
 
 def index(request):
-    return render(request, 'store/login.html', {})
+    return render(request, 'store/product_details.html', {})
 
 
 def profile(request):
