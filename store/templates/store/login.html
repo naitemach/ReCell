@@ -187,17 +187,21 @@
 	<div class="row">
 		<div class="span4">
 			<div class="well">
-			<form>
+			<form action="login" method="post" id="login">
+                {% csrf_token %}
+
 			  <div class="control-group">
-				<label class="control-label" for="inputEmail1">Email</label>
+				<label class="control-label" for="id_email">Email</label>
 				<div class="controls">
-				  <input class="span3"  type="text" id="inputEmail1" placeholder="Email">
+				  <input class="span3"  type="email" id="id_email" name ="email" placeholder="Email">
+
 				</div>
 			  </div>
 			  <div class="control-group">
-				<label class="control-label" for="inputPassword1">Password</label>
+				<label class="control-label" for="id_password">Password</label>
 				<div class="controls">
-				  <input type="password" class="span3"  id="inputPassword1" placeholder="Password">
+				  <input type="password" class="span3"  id="id_password" name ="password" placeholder="Password">
+
 				</div>
 			  </div>
 			  <div class="control-group">
