@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import LoginForm
-from .models import Item, ItemDesc
+from .models import Item, ItemDesc,User
 from django.db import connection
 
 def login(request):
@@ -15,13 +15,23 @@ def login(request):
             # ...
             # redirect to a new URL:
             email = form.cleaned_data['email']
+            user_obj = User.objects.filter(email=form.cleaned_data['email'], password=form.cleaned_data['password'])
+            if user_obj.exists():
+                request.session['email'] = email
+                request.session['username'] = user_obj.get().name
+                request.session['id'] = user_obj.get().u_id
+                return render(request, 'store/index.html', {'username': request.session['username']})
+
             return render(request, 'store/form.html', {'form': form, 'email': email})
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = LoginForm()
 
-    return render(request, 'store/form.html', {'form': form})
+    return render(request, 'store/login.html', {'form': form})
+
+    # if a GET (or any other method) we'll create a blank form
+
 
 
 def index(request):
