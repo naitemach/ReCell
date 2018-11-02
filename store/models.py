@@ -26,7 +26,7 @@ class User(models.Model):
 
 class Location(models.Model):
     lid = models.AutoField(primary_key=True)
-    zip_code = models.IntegerField()
+    zip_code = models.IntegerField(null=True)
     city_name = models.CharField(max_length=10)
     address = models.CharField(max_length=100)
     created_date = models.DateTimeField(
