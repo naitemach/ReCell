@@ -4,9 +4,9 @@ from django.utils import timezone
 
 class User(models.Model):
     u_id = models.AutoField(primary_key=True)
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    dob = models.DateField()
+    first_name = models.CharField(max_length=30,null=True)
+    last_name = models.CharField(max_length=30,null=True)
+    dob = models.DateField(null=True)
     email = models.EmailField()
     password = models.CharField(max_length=10)
     is_seller = models.BooleanField()

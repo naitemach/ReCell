@@ -67,11 +67,13 @@ def register(request):
             obj.first_name = form.cleaned_data['first_name']
             obj.last_name = form.cleaned_data['last_name']
             obj.password = form.cleaned_data['password']
-            
+
+            test = form.cleaned_data
             request.session['email'] = email
             request.session['first_name'] = user_obj.get().first_name
             request.session['id'] = user_obj.get().u_id
-            return render(request, 'store/index.html', {'username': request.session['username']})
+            return render(request, 'store/test.html', test)
+            #return render(request, 'store/index.html', {'username': request.session['username']})
 
         return render(request, 'store/form.html', {'form': form, })
 
@@ -79,7 +81,7 @@ def register(request):
     else:
         form = LoginForm()
 
-    return render(request, 'store/login.html', {'form': form})
+    #return render(request, 'store/login.html', {'form': form})
     return render(request, 'store/register.html', {})
 
 

@@ -191,7 +191,8 @@
 		<button type="button" class="close" data-dismiss="alert">×</button>
 		<strong>Lorem Ipsum is simply</strong> dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
 	 </div> -->
-	<form class="form-horizontal" action="index" method="post">
+	<form class="form-horizontal" action="register" method="post">
+        {% csrf_token %}
 		<h4>Your personal information</h4>
 {#		<div class="control-group">#}
 {#		<label class="control-label">Title <sup>*</sup></label>#}
@@ -232,6 +233,14 @@
 		<label class="control-label" for="id_dob">Date of Birth <sup>*</sup></label>
 		<div class="controls">
 		  <input type="date" class="span2" id="id_dob" name="dob">
+		</div>
+	  </div>
+        <div class="control-group">
+		<label class="control-label" for="id_seller">Are you a Seller? <sup>*</sup></label>
+		<div class="controls">
+            <input type="radio" id = 'id_seller' name="seller" value="0" checked> No<br>
+            <input type="radio" id = 'id_seller' name="seller" value="1" > Yes<br>
+
 		</div>
 	  </div>
 

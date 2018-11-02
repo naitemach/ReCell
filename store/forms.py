@@ -17,3 +17,4 @@ class RegisterForm(forms.Form):
     state = forms.CharField()
     zip_code = forms.IntegerField(label='zip_code')
     mobile = forms.IntegerField(label='mobile')
+    seller = forms.CharField(label='seller')
