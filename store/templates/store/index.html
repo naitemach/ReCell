@@ -32,7 +32,7 @@
     <link rel="apple-touch-icon-precomposed" href="{% static 'store/themes/images/ico/apple-touch-icon-57-precomposed.png' %}">
 	<style type="text/css" id="enject"></style>
   </head>
-<body>
+<body onload="testfunc()">
 <div id="header">
 <div class="container">
 <div id="welcomeLine" class="row">
@@ -41,7 +41,7 @@
 	<div class="pull-right">
 		<a href="{% static 'store/product' %}_summary.html"><span>&pound;</span></a>
 		<span class="btn btn-mini">{{credits}}</span>
-		<a href="{% static 'store/product' %}_summary.html"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i>{{items}} Item(s) in your cart </span> </a> 
+		<a href="{% url 'productSummary'%}"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i>{{items}} Item(s) in your cart </span> </a> 
 	</div>
 	</div>
 </div>
@@ -71,7 +71,19 @@
 	 <li class=""><a href="{% static 'store/normal.html' %}">Delivery</a></li>
 	 <li class=""><a href="{% static 'store/contact.html' %}">Contact</a></li>
 	 <li class="">
-	 <a href="{% url 'login' %}" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
+	 	<script type="text/javascript">
+	 		function testfunc(){
+	 		var id = "{{id}}"
+	 		if (id){
+	 			document.getElementById("testingthis").innerHTML="LOGOUT";
+	 		}
+	 		else{
+	 			alert("fdajf")
+	 			document.getElementById('testingthis').innerHTML="LOGIN";
+	 		}
+	 	}
+	 	</script>
+	 <a href="{% url 'login' %}" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success" id = "testingthis">fdsf</span></a>
 	<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
 		  <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -175,38 +187,38 @@
 		<ul id="sideManu" class="nav nav-tabs nav-stacked">
 			<li class="subMenu open"><a> ELECTRONICS [230]</a>
 				<ul>
-				<li><a class="active" href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>Cameras (100) </a></li>
-				<li><a href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>Computers, Tablets & laptop (30)</a></li>
-				<li><a href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>Mobile Phone (80)</a></li>
-				<li><a href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>Sound & Vision (15)</a></li>
+				<li><a class="active" href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Cameras (100) </a></li>
+				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Computers, Tablets & laptop (30)</a></li>
+				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Mobile Phone (80)</a></li>
+				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Sound & Vision (15)</a></li>
 				</ul>
 			</li>
 			<li class="subMenu"><a> CLOTHES [840] </a>
 			<ul style="display:none">
-				<li><a href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>Women's Clothing (45)</a></li>
-				<li><a href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>Women's Shoes (8)</a></li>												
-				<li><a href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>Women's Hand Bags (5)</a></li>	
-				<li><a href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>Men's Clothings  (45)</a></li>
-				<li><a href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>Men's Shoes (6)</a></li>												
-				<li><a href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>Kids Clothing (5)</a></li>												
-				<li><a href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>Kids Shoes (3)</a></li>												
+				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Women's Clothing (45)</a></li>
+				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Women's Shoes (8)</a></li>												
+				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Women's Hand Bags (5)</a></li>	
+				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Men's Clothings  (45)</a></li>
+				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Men's Shoes (6)</a></li>												
+				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Kids Clothing (5)</a></li>												
+				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Kids Shoes (3)</a></li>												
 			</ul>
 			</li>
 			<li class="subMenu"><a>FOOD AND BEVERAGES [1000]</a>
 				<ul style="display:none">
-				<li><a href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>Angoves  (35)</a></li>
-				<li><a href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>Bouchard Aine & Fils (8)</a></li>												
-				<li><a href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>French Rabbit (5)</a></li>	
-				<li><a href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>Louis Bernard  (45)</a></li>
-				<li><a href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>BIB Wine (Bag in Box) (8)</a></li>												
-				<li><a href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>Other Liquors & Wine (5)</a></li>												
-				<li><a href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>Garden (3)</a></li>												
-				<li><a href="{% static 'store/products.html' %}"><i class="icon-chevron-right"></i>Khao Shong (11)</a></li>												
+				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Angoves  (35)</a></li>
+				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Bouchard Aine & Fils (8)</a></li>												
+				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>French Rabbit (5)</a></li>	
+				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Louis Bernard  (45)</a></li>
+				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>BIB Wine (Bag in Box) (8)</a></li>												
+				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Other Liquors & Wine (5)</a></li>												
+				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Garden (3)</a></li>												
+				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Khao Shong (11)</a></li>												
 			</ul>
 			</li>
-			<li><a href="{% static 'store/products.html' %}">HEALTH & BEAUTY [18]</a></li>
-			<li><a href="{% static 'store/products.html' %}">SPORTS & LEISURE [58]</a></li>
-			<li><a href="{% static 'store/products.html' %}">BOOKS & ENTERTAINMENTS [14]</a></li>
+			<li><a href="{% url 'catResults' %}">HEALTH & BEAUTY [18]</a></li>
+			<li><a href="{% url 'catResults' %}">SPORTS & LEISURE [58]</a></li>
+			<li><a href="{% url 'catResults' %}">BOOKS & ENTERTAINMENTS [14]</a></li>
 		</ul>
 		<br/>
 		  <div class="thumbnail">
@@ -245,7 +257,7 @@
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b1.jpg' %}" alt=""></a>
 					<div class="caption">
 					  <h5>Product name</h5>
-					  <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					  <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
 					</div>
 				  </div>
 				</li>
@@ -255,7 +267,7 @@
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b2.jpg' %}" alt=""></a>
 					<div class="caption">
 					  <h5>Product name</h5>
-					  <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					  <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
 					</div>
 				  </div>
 				</li>
@@ -265,7 +277,7 @@
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b3.jpg' %}" alt=""></a>
 					<div class="caption">
 					  <h5>Product name</h5>
-					   <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					   <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
 					</div>
 				  </div>
 				</li>
@@ -275,7 +287,7 @@
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b4.jpg' %}" alt=""></a>
 					<div class="caption">
 					  <h5>Product name</h5>
-					   <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					   <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
 					</div>
 				  </div>
 				</li>
@@ -289,7 +301,7 @@
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/5.jpg' %}" alt=""></a>
 					<div class="caption">
 					  <h5>Product name</h5>
-					  <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					  <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
 					</div>
 				  </div>
 				</li>
@@ -299,7 +311,7 @@
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/6.jpg' %}" alt=""></a>
 					<div class="caption">
 					  <h5>Product name</h5>
-					  <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					  <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
 					</div>
 				  </div>
 				</li>
@@ -308,7 +320,7 @@
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/7.jpg' %}" alt=""></a>
 					<div class="caption">
 					  <h5>Product name</h5>
-					   <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					   <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
 					</div>
 				  </div>
 				</li>
@@ -317,7 +329,7 @@
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/8.jpg' %}" alt=""></a>
 					<div class="caption">
 					  <h5>Product name</h5>
-					   <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					   <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
 					</div>
 				  </div>
 				</li>
@@ -330,7 +342,7 @@
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/9.jpg' %}" alt=""></a>
 					<div class="caption">
 					  <h5>Product name</h5>
-					  <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					  <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
 					</div>
 				  </div>
 				</li>
@@ -339,7 +351,7 @@
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/10.jpg' %}" alt=""></a>
 					<div class="caption">
 					  <h5>Product name</h5>
-					  <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					  <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
 					</div>
 				  </div>
 				</li>
@@ -348,7 +360,7 @@
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/11.jpg' %}" alt=""></a>
 					<div class="caption">
 					  <h5>Product name</h5>
-					   <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					   <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
 					</div>
 				  </div>
 				</li>
@@ -357,7 +369,7 @@
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/1.jpg' %}" alt=""></a>
 					<div class="caption">
 					  <h5>Product name</h5>
-					   <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					   <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
 					</div>
 				  </div>
 				</li>
@@ -370,7 +382,7 @@
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/2.jpg' %}" alt=""></a>
 					<div class="caption">
 					  <h5>Product name</h5>
-					  <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					  <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
 					</div>
 				  </div>
 				</li>
@@ -379,7 +391,7 @@
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""></a>
 					<div class="caption">
 					  <h5>Product name</h5>
-					  <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					  <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
 					</div>
 				  </div>
 				</li>
@@ -388,7 +400,7 @@
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/4.jpg' %}" alt=""></a>
 					<div class="caption">
 					  <h5>Product name</h5>
-					   <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					   <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
 					</div>
 				  </div>
 				</li>
@@ -397,7 +409,7 @@
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/5.jpg' %}" alt=""></a>
 					<div class="caption">
 					  <h5>Product name</h5>
-					   <h4><a class="btn" href="{% static 'store/product' %}_details.html">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					   <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
 					</div>
 				  </div>
 				</li>

@@ -26,7 +26,13 @@ def login(request):
 
 
 def index(request):
-    return render(request, 'store/index.html', {})
+    fname = request.session.get('first_name')
+    credits = request.session.get('credits')
+    items = request.session.get('items')
+    if fname != None and credits != None:
+        return render(request, 'store/index.html', {'first_name': fname, 'credits': credits, 'items': items})
+    else:
+        return HttpResponse("Fname couldnt be passes succesfully")
 
 
 def profile(request):
@@ -35,6 +41,17 @@ def profile(request):
     items = request.session.get('items')
     if fname != None and credits != None:
         return render(request, 'store/index.html', {'first_name': fname, 'credits': credits, 'items': items})
+    else:
+        return HttpResponse("Fname couldnt be passes succesfully")
+
+
+def catResults(request):
+    fname = request.session.get('first_name')
+    credits = request.session.get('credits')
+    items = request.session.get('items')
+
+    if credits != None:
+        return render(request, 'store/cat_results.html', {'first_name': fname, 'credits': credits, 'items': items})
     else:
         return HttpResponse("Fname couldnt be passes succesfully")
 
