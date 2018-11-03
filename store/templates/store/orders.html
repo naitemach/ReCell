@@ -77,8 +77,8 @@
 	 			document.getElementById("link1").href="{% url 'productReg'%}";
 	 		}
 	 		else{
-	 			document.getElementById("link1").innerHTML="Your Orders";
-	 			document.getElementById("link1").href="{% url 'orders'%}";
+	 			document.getElementById("link1").innerHTML="Continue Shopping";
+	 			document.getElementById("link1").href="{% url 'index'%}";
 
 	 		}
 	 	}
@@ -115,199 +115,46 @@
 <br class="clr"/>
 <div class="tab-content">
 	<div class="tab-pane active" id="listView">
-		<div class="row">
-			<div class="span2">
+            {%  for order in orders %}
+                {% for item in order.items.all %}
+                    <div class="row">
+                    <div class="span2">
 				<img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/>
 			</div>
 			<div class="span4">
+                {% if items.status == 0 %}
+				<h3>Status : <span style="color:green">Available</span></h3>
+                {% else %}
 				<h3>Status : <span style="color:green">Ordered</span></h3>
+                {% endif %}
 				<hr class="soft"/>
-				<h5>Product Name </h5>
+				<h5>{{ item.item_desc.name }} </h5>
 				<p>
-				Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies -
-				that is why our goods are so popular..
+				{{ item.item_desc.comments }}
 				</p>
-				<a class="btn btn-small pull-right" href="{% static 'store/product_details.html' %}">View Details</a>
+				<a class="btn btn-small pull-right" href="{% url 'productDetails' %}">View Details</a>
 				<br class="clr"/>
 			</div>
 			<div class="span3 alignR">
 			<form class="form-horizontal qtyFrm">
-			<h3> $140.00</h3>
-			<label class="checkbox">
-				<input type="checkbox">  Adds product to compair
-			</label><br/>
-
-			  <a href="{% static 'store/product_details.html' %}" class="btn btn-large btn-danger"> Cancel </a>
-			  <a href="{% static 'store/product_details.html' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
+			<h3> ${{ item.item_desc.price }}</h3>
+			  <a href="{% url 'productDetails' %}" class="btn btn-large btn-danger"> Cancel </a>
+			  <a href="{% url 'productDetails' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
 
 				</form>
 			</div>
+
 		</div>
+                {% endfor %}
+            {% endfor %}
 		<hr class="soft"/>
-		<div class="row">
-			<div class="span2">
-				<img src="{% static 'store/themes/images/products/1.jpg' %}" alt=""/>
-			</div>
-			<div class="span4">
-				<h3>Status : <span style="color:green">Ordered</span></h3>
-				<hr class="soft"/>
-				<h5>Product Name </h5>
-				<p>
-				Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies -
-				that is why our goods are so popular..
-				</p>
-				<a class="btn btn-small pull-right" href="{% static 'store/product_details.html' %}">View Details</a>
-				<br class="clr"/>
-			</div>
-			<div class="span3 alignR">
-			<form class="form-horizontal qtyFrm">
-				<h3> $140.00</h3>
-				<label class="checkbox">
-				<input type="checkbox">  Adds product to compair
-				</label><br/>
+    </div>
 
-				<a href="{% static 'store/product_details.html' %}" class="btn btn-large btn-danger"> Cancel </a>
-				<a href="{% static 'store/product_details.html' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
 
-			</form>
-			</div>
-		</div>
-		<hr class="soft"/>
-		<div class="row">
-			<div class="span2">
-				<img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/>
-			</div>
-			<div class="span4">
-				<h3>Status : <span style="color:green">Ordered</span></h3>
-				<hr class="soft"/>
-				<h5>Product Name </h5>
-				<p>
-				Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies -
-				that is why our goods are so popular..
-				</p>
-				<a class="btn btn-small pull-right" href="{% static 'store/product_details.html' %}">View Details</a>
-				<br class="clr"/>
-			</div>
-			<div class="span3 alignR">
-			<form class="form-horizontal qtyFrm">
-				<h3> $140.00</h3>
-				<label class="checkbox">
-					<input type="checkbox">  Adds product to compair
-				</label><br/>
+</div>
 
-				  <a href="{% static 'store/product_details.html' %}" class="btn btn-large btn-danger"> Cancel </a>
-				  <a href="{% static 'store/product_details.html' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
-
-			</form>
-			</div>
-		</div>
-		<hr class="soft"/>
-		<div class="row">
-			<div class="span2">
-				<img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/>
-			</div>
-			<div class="span4">
-				<h3>Status : <span style="color:green">Ordered</span></h3>
-				<hr class="soft"/>
-				<h5>Product Name </h5>
-				<p>
-				Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies -
-				that is why our goods are so popular..
-				</p>
-				<a class="btn btn-small pull-right" href="{% static 'store/product_details.html' %}">View Details</a>
-				<br class="clr"/>
-			</div>
-			<div class="span3 alignR">
-				<form class="form-horizontal qtyFrm">
-				<h3> $140.00</h3>
-				<label class="checkbox">
-				<input type="checkbox">  Adds product to compair
-				</label><br/>
-
-				<a href="{% static 'store/product_details.html' %}" class="btn btn-large btn-danger"> Cancel </a>
-				<a href="{% static 'store/product_details.html' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
-
-				</form>
-			</div>
-		</div>
-
-		<hr class="soft"/>
-		<div class="row">
-			<div class="span2">
-				<img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/>
-			</div>
-			<div class="span4">
-				<h3>Status : <span style="color:green">Ordered</span></h3>
-				<hr class="soft"/>
-				<h5>Product Name </h5>
-				<p>
-				Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies -
-				that is why our goods are so popular..
-				</p>
-				<a class="btn btn-small pull-right" href="{% static 'store/product_details.html' %}">View Details</a>
-				<br class="clr"/>
-			</div>
-			<div class="span3 alignR">
-				<form class="form-horizontal qtyFrm">
-				<h3> $140.00</h3>
-				<label class="checkbox">
-				<input type="checkbox">  Adds product to compair
-				</label><br/>
-				<a href="{% static 'store/product_details.html' %}" class="btn btn-large btn-danger"> Cancel </a>
-				<a href="{% static 'store/product_details.html' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
-				</form>
-			</div>
-		</div>
-		<hr class="soft"/>
-		<div class="row">
-			<div class="span2">
-				<img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/>
-			</div>
-			<div class="span4">
-				<h3>Status : <span style="color:green">Ordered</span></h3>
-				<hr class="soft"/>
-				<h5>Product Name </h5>
-				<p>
-				Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies -
-				that is why our goods are so popular..
-				</p>
-				<a class="btn btn-small pull-right" href="{% static 'store/product_details.html' %}">View Details</a>
-				<br class="clr"/>
-			</div>
-			<div class="span3 alignR">
-				<form class="form-horizontal qtyFrm">
-				<h3> $140.00</h3>
-				<label class="checkbox">
-				<input type="checkbox">  Adds product to compair
-				</label><br/>
-
-				<a href="{% static 'store/product_details.html' %}" class="btn btn-large btn-danger"> Cancel </a>
-				<a href="{% static 'store/product_details.html' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
-
-				</form>
-			</div>
-		</div>
-		<hr class="soft"/>
+	<a href="{% url 'index' %}" class="btn btn-large pull-right">Continue Shopping</a>
 	</div>
-
-
-</div>
-
-	<a href="{% static 'store/compair.html' %}" class="btn btn-large pull-right">Continue Shopping</a>
-	<div class="pagination">
-			<ul>
-			<li><a href="{% static 'store/#' %}">&lsaquo;</a></li>
-			<li><a href="{% static 'store/#' %}">1</a></li>
-			<li><a href="{% static 'store/#' %}">2</a></li>
-			<li><a href="{% static 'store/#' %}">3</a></li>
-			<li><a href="{% static 'store/#' %}">4</a></li>
-			<li><a href="{% static 'store/#' %}">...</a></li>
-			<li><a href="{% static 'store/#' %}">&rsaquo;</a></li>
-			</ul>
-			</div>
-			<br class="clr"/>
-</div>
-</div>
 </div>
 </div>
 <!-- MainBody End -->
