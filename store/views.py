@@ -7,6 +7,7 @@ from django.db import connection
 
 def login(request):
     if request.method == 'POST':
+        request.session.flush()
         form = LoginForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
@@ -14,6 +15,7 @@ def login(request):
 
             if user_obj.exists():
                 order_obj = Order.objects.filter(b_id=user_obj.get().u_id)
+                request.session.flush()
                 request.session['email'] = email
                 request.session['first_name'] = user_obj.get().first_name
                 request.session['id'] = user_obj.get().u_id
@@ -21,9 +23,10 @@ def login(request):
                 request.session['items'] = 0
                 request.session['is_seller'] = user_obj.get().is_seller
                 if request.session['is_seller']:
+                    request.session['is_seller'] = 1
                     return render(request, 'store/sales.html',
                                   {'first_name': request.session['first_name'], 'credits': request.session['credits'],
-                                   'id': request.session['id'], 'is_seller': request.session['is_seller']})
+                                   'id': request.session['id'], 'is_seller': 1})
                 else:
                     if order_obj.exists():
                         return render(request, 'store/index.html', {'first_name': request.session['first_name'],
