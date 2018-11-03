@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import LoginForm, RegisterForm
-from .models import User, Location, Wallet
+from .models import User, Location, Wallet,Order
 from django.db import connection
 
 
@@ -17,12 +17,14 @@ def login(request):
 			# redirect to a new URL:
 			email = form.cleaned_data['email']
 			user_obj = User.objects.filter(email=form.cleaned_data['email'], password=form.cleaned_data['password'])
+			order_obj = Order.objects.filter(b_id=user_obj.get().u_id)
 			if user_obj.exists():
 				request.session['email'] = email
 				request.session['first_name'] = user_obj.get().first_name
 				request.session['id'] = user_obj.get().u_id
 				request.session['credits'] = user_obj.get().wall.credits
-				return render(request, 'store/index.html', {'first_name': request.session['first_name']})
+				request.session['items'] = order_obj.get().items.count()
+				return render(request, 'store/index.html', {'first_name': request.session['first_name'],'credits':request.session['credits'],'items':request.session['items']})
 
 			return render(request, 'store/form.html', {'form': form, 'email': email})
 
@@ -34,24 +36,25 @@ def login(request):
 
 
 def index(request):
-	return render(request, 'store/index.html', {})
+	return render(request, 'store/login.html', {})
 
 
 def profile(request):
 	fname = request.session.get('first_name')
 	credits = request.session.get('credits')
-
+	items = request.session.get('items')
 	if fname != None and credits != None:
-		return render(request,'store/index.html',{'first_name':fname,'credits':credits})
+		return render(request,'store/index.html',{'first_name':fname,'credits':credits,'items':items})
 	else:
 		return HttpResponse("Fname couldnt be passes succesfully")
 
-def products(request):
+def productDetails(request):
 	fname = request.session.get('first_name')
 	credits = request.session.get('credits')
+	items = request.session.get('items')
 
 	if fname != None and credits != None:
-		return render(request, 'store/products.html', {'first_name':fname,'credits':credits})
+		return render(request, 'store/product_details.html', {'first_name':fname,'credits':credits,'items':items})
 	else:
 		return HttpResponse("Fname couldnt be passes succesfully")
 
@@ -97,7 +100,7 @@ def register(request):
             request.session['email'] = email
             request.session['first_name'] = first_name
             request.session['id'] = id
-            return render(request, 'store/test.html', {'test':obj.first_name})
+            return render(request, 'store/register.html', {})
             # return render(request, 'store/index.html', {'username': request.session['username']})
 
         return render(request, 'store/form.html', {'form': form, })
@@ -113,8 +116,10 @@ def register(request):
 def search(request):
 	fname = request.session.get('first_name')
 	credits = request.session.get('credits')
+	items = request.session.get('items')
+
 	if credits != None:
-		return HttpResponse(first_name,credits)
+		return render(request, 'store/search_results.html', {'first_name':fname,'credits':credits,'items':items})	
 	else:
 		return HttpResponse("Fname couldnt be passes succesfully")
 
@@ -128,12 +133,22 @@ def display(request):
 	cursor.execute('SELECT * FROM store_itemdesc where item_desc_id = %s', [id])
 	itemdesc = cursor.fetchone()
 
-	return render(request, 'store/display.html', {'item': item, 'itemdesc': itemdesc,'first_name':fname})
+	return render(request, 'store/display.html', {'item': item, 'itemdesc': itemdesc,'first_name':fname,'items':items})
 
+def productSummary(request):
+	fname = request.session.get('first_name')
+	credits = request.session.get('credits')
+	items = request.session.get('items')
+
+	if credits != None:
+		return render(request, 'store/product_summary.html', {'first_name':fname,'credits':credits,'items':items})	
+	else:
+		return HttpResponse("Fname couldnt be passes succesfully")
 
 def productReg(request):
 	fname = request.session.get('first_name')
 	credits = request.session.get('credits')
+	items = request.session.get('items')
 
 	if fname != None and credits != None:
-		return render(request, 'store/product_reg.html', {'first_name':fname,'credits':credits})
+		return render(request, 'store/product_reg.html', {'first_name':fname,'credits':credits,'items':items})

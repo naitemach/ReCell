@@ -38,16 +38,12 @@
 <div id="header">
 <div class="container">
 <div id="welcomeLine" class="row">
-	<div class="span6">Welcome!<strong> User</strong></div>
+	<div class="span6">Welcome<strong> User!</strong></div>
 	<div class="span6">
 	<div class="pull-right">
-<!-- 		<a href="{% static 'store/product_summary.html' %}"><span class="">Fr</span></a>
-		<a href="{% static 'store/product_summary.html' %}"><span class="">Es</span></a>
-		<span class="btn btn-mini">En</span>
 		<a href="{% static 'store/product_summary.html' %}"><span>&pound;</span></a>
 		<span class="btn btn-mini">$155.00</span>
-		<a href="{% static 'store/product_summary.html' %}"><span class="">$</span></a> -->
-		<a href="{% static 'store/product_summary.html' %}"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i> [ 3 ] Itemes in your cart </span> </a> 
+		<a href="{% static 'store/product_summary.html' %}"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i>Items in your cart </span> </a> 
 	</div>
 	</div>
 </div>
@@ -216,7 +212,7 @@
 		<div class="span4">
 			<div class="well">
 			<h5>NOT REGISTERED?</h5>Enter your e-mail address to create an account.<br/><br/>
-			<form action="register.html">
+			<form action={% url 'register' %}>
 			  <div class="control-group">
 				<label class="control-label" for="inputEmail0">E-mail address</label>
 				<div class="controls">
