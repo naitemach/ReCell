@@ -7,7 +7,7 @@ from django.db import connection
 
 
 def login(request):
-	if request.method == 'POST':
+    if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
@@ -18,34 +18,36 @@ def login(request):
                 request.session['id'] = user_obj.get().u_id
                 request.session['credits'] = user_obj.get().wall.credits
                 return render(request, 'store/index.html', {'first_name': request.session['first_name']})
+
             return render(request, 'store/form.html', {'form': form, 'email': email})
     else:
         form = LoginForm()
-    return render(request, 'store/login.html', {'form': form}))
+    return render(request, 'store/login.html', {'form': form})
 
 
 def index(request):
-	return render(request, 'store/login.html', {})
+    return render(request, 'store/login.html', {})
 
 
 def profile(request):
-	fname = request.session.get('first_name')
-	credits = request.session.get('credits')
-	items = request.session.get('items')
-	if fname != None and credits != None:
-		return render(request,'store/index.html',{'first_name':fname,'credits':credits,'items':items})
-	else:
-		return HttpResponse("Fname couldnt be passes succesfully")
+    fname = request.session.get('first_name')
+    credits = request.session.get('credits')
+    items = request.session.get('items')
+    if fname != None and credits != None:
+        return render(request, 'store/index.html', {'first_name': fname, 'credits': credits, 'items': items})
+    else:
+        return HttpResponse("Fname couldnt be passes succesfully")
+
 
 def productDetails(request):
-	fname = request.session.get('first_name')
-	credits = request.session.get('credits')
-	items = request.session.get('items')
+    fname = request.session.get('first_name')
+    credits = request.session.get('credits')
+    items = request.session.get('items')
 
-	if fname != None and credits != None:
-		return render(request, 'store/product_details.html', {'first_name':fname,'credits':credits,'items':items})
-	else:
-		return HttpResponse("Fname couldnt be passes succesfully")
+    if fname != None and credits != None:
+        return render(request, 'store/product_details.html', {'first_name': fname, 'credits': credits, 'items': items})
+    else:
+        return HttpResponse("Fname couldnt be passes succesfully")
 
 
 def register(request):
@@ -91,14 +93,14 @@ def register(request):
 
 
 def search(request):
-	fname = request.session.get('first_name')
-	credits = request.session.get('credits')
-	items = request.session.get('items')
+    fname = request.session.get('first_name')
+    credits = request.session.get('credits')
+    items = request.session.get('items')
 
-	if credits != None:
-		return render(request, 'store/search_results.html', {'first_name':fname,'credits':credits,'items':items})	
-	else:
-		return HttpResponse("Fname couldnt be passes succesfully")
+    if credits != None:
+        return render(request, 'store/search_results.html', {'first_name': fname, 'credits': credits, 'items': items})
+    else:
+        return HttpResponse("Fname couldnt be passes succesfully")
 
 
 def display(request):
@@ -109,16 +111,19 @@ def display(request):
     id = item[2]
     cursor.execute('SELECT * FROM store_itemdesc where item_desc_id = %s', [id])
     itemdesc = cursor.fetchone()
-	return render(request, 'store/display.html', {'item': item, 'itemdesc': itemdesc,'first_name':fname,'items':items})
+    return render(request, 'store/display.html',
+                  {'item': item, 'itemdesc': itemdesc, 'first_name': fname, 'items': item})
+
 
 def productSummary(request):
-	fname = request.session.get('first_name')
-	credits = request.session.get('credits')
-	items = request.session.get('items')
-	if credits != None:
-		return render(request, 'store/product_summary.html', {'first_name':fname,'credits':credits,'items':items})	
-	else:
-		return HttpResponse("Fname couldnt be passes succesfully")
+    fname = request.session.get('first_name')
+    credits = request.session.get('credits')
+    items = request.session.get('items')
+    if credits != None:
+        return render(request, 'store/product_summary.html', {'first_name': fname, 'credits': credits, 'items': items})
+    else:
+        return HttpResponse("Fname couldnt be passes succesfully")
+
 
 def productReg(request):
     # if request.method == 'POST':
@@ -140,10 +145,11 @@ def productReg(request):
                                            comments=form.cleaned_data['additional_information'])
             desc.save()
 
-            loc = Location.objects.create(zip_code = form.cleaned_data['zip_code'],city_name = form.cleaned_data['city'],address = form.cleaned_data['address'])
+            loc = Location.objects.create(zip_code=form.cleaned_data['zip_code'], city_name=form.cleaned_data['city'],
+                                          address=form.cleaned_data['address'])
             loc.save()
 
-            inv = Inventory.objects.create(category = form.cleaned_data['category'])
+            inv = Inventory.objects.create(category=form.cleaned_data['category'])
             inv.save()
 
             seller_obj = User.objects.get(u_id=2)
@@ -157,4 +163,3 @@ def productReg(request):
     else:
         form = ProdRegistration()
     return render(request, 'store/product_reg.html', {'form': form})
-
