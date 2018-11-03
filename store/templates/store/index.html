@@ -227,7 +227,7 @@
                   {% for prod in prods1 %}
 				<li class="span3">
 				  <div class="thumbnail">
-					<a  href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/6.jpg' %}" alt=""/></a>
+					<a  href="/productDetails/?item={{ prod.item_id }}"><img src="{% static 'store/themes/images/products/6.jpg' %}" alt=""/></a>
 					<div class="caption">
 					  <h5>{{ prod.item_desc.name }}</h5>
 					  <p> 
