@@ -159,10 +159,17 @@ def search(request):
     fname = request.session.get('first_name')
     credits = request.session.get('credits')
     items = request.session.get('items')
+    if request.method == 'GET':  # If the form is submitted
+
+        search_query = request.GET.get('search', None)
+        desc=ItemDesc.objects.filter(name=search_query)
+        print('item',desc)
+
     if credits != None:
-        return render(request, 'store/search_results.html', {'first_name': fname, 'credits': credits, 'items': items})
+        return render(request, 'store/search_results.html', {'first_name': fname, 'credits': credits, 'items': items,'search':search_query ,'desc':desc})
     else:
         return HttpResponse("Fname couldnt be passes succesfully")
+
 
 
 def sales(request):
@@ -259,3 +266,5 @@ def productReg(request):
     return render(request, 'store/product_reg.html',
                   {'form': form, 'first_name': fname, 'credits': credits, 'items': items, 'is_seller': is_seller,
                    'id': id})
+
+

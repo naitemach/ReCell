@@ -47,16 +47,10 @@
 </a>
   <div class="navbar-inner">
     <a class="brand" href="{% static 'store/index.html' %}"><img src="{% static 'store/themes/images/logo.png' %}" alt="Bootsshop"/></a>
-		<form class="form-inline navbar-search" method="post" action="products.html" >
-		<input id="srchFld" class="srchTxt" type="text" />
-		  <select class="srchTxt">
-			<option>All</option>
-			<option>CLOTHES </option>
-			<option>FOOD AND BEVERAGES </option>
-			<option>HEALTH & BEAUTY </option>
-			<option>SPORTS & LEISURE </option>
-			<option>BOOKS & ENTERTAINMENTS </option>
-		</select> 
+		<form class="form-inline navbar-search" method="get" action="{% url 'search' %}" >
+			{% csrf_token %}
+
+		<input id="id_search" class="srchTxt" type="text" name="search" value="{{ query }}" />
 		  <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
     </form>
     <ul id="topMenu" class="nav pull-right">
