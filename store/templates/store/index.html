@@ -67,9 +67,8 @@
 		  <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
     </form>
     <ul id="topMenu" class="nav pull-right">
-	 <li class=""><a href="{% static 'store/special' %}_offer.html">Specials Offer</a></li>
-	 <li class=""><a href="{% static 'store/normal.html' %}">Delivery</a></li>
-	 <li class=""><a href="{% static 'store/contact.html' %}">Contact</a></li>
+	 <li class=""><a href="" id = "link1"></a></li>
+	 <li class=""><a href="" id="link2"></a></li>
 	 <li class="">
 	 	<script type="text/javascript">
 	 		function testfunc(){
@@ -82,7 +81,13 @@
 	 			document.getElementById('testingthis').innerHTML="LOGIN";
 	 		}
 	 		if(is_seller){
-	 			document.getElementById("link1").innerHTML="";
+	 			document.getElementById("link1").innerHTML="Add Item";
+	 			document.getElementById("link1").href="{% url 'productReg'%}";
+	 		}
+	 		else{
+	 			document.getElementById("link1").innerHTML="Your Orders";
+	 			document.getElementById("link1").href="{% url 'orders'%}";
+
 	 		}
 	 	}
 	 	</script>
