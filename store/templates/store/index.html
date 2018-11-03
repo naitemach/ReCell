@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootshop online Shopping cart</title>
+    <title>ReCell| Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">	
@@ -188,8 +188,8 @@
 				  <i class="tag"></i>
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b1.jpg' %}" alt=""></a>
 					<div class="caption">
-					  <h5>Product name</h5>
-					  <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					  <h5>Product Name</h5>
+					  <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$200</span></h4>
 					</div>
 				  </div>
 				</li>
@@ -230,79 +230,66 @@
 	</div>
 		<h4>Latest Products </h4>
 			  <ul class="thumbnails">
+                  {% for prod in prods1 %}
 				<li class="span3">
 				  <div class="thumbnail">
 					<a  href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/6.jpg' %}" alt=""/></a>
 					<div class="caption">
-					  <h5>Product name</h5>
+					  <h5>{{ prod.item_desc.name }}</h5>
 					  <p> 
-						Lorem Ipsum is simply dummy text. 
+						{{ prod.item_desc.comments }}
 					  </p>
 					 
 					  <h4 style="text-align:center"><a class="btn" href="{% static 'store/product' %}_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">$222.00</a></h4>
 					</div>
 				  </div>
 				</li>
+                  {% endfor %}
+                {% for prod in prods2 %}
 				<li class="span3">
 				  <div class="thumbnail">
-					<a  href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/7.jpg' %}" alt=""/></a>
+					<a  href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/6.jpg' %}" alt=""/></a>
 					<div class="caption">
-					  <h5>Product name</h5>
-					  <p> 
-						Lorem Ipsum is simply dummy text. 
+					  <h5>{{ prod.item_desc.name }}</h5>
+					  <p>
+						{{ prod.item_desc.comments }}
 					  </p>
-					 <h4 style="text-align:center"><a class="btn" href="{% static 'store/product' %}_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">$222.00</a></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a  href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/8.jpg' %}" alt=""/></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <p> 
-						Lorem Ipsum is simply dummy text. 
-					  </p>
-					   <h4 style="text-align:center"><a class="btn" href="{% static 'store/product' %}_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">$222.00</a></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-					<a  href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/9.jpg' %}" alt=""/></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <p> 
-						Lorem Ipsum is simply dummy text. 
-					  </p>
+
 					  <h4 style="text-align:center"><a class="btn" href="{% static 'store/product' %}_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">$222.00</a></h4>
 					</div>
 				  </div>
 				</li>
+                  {% endfor %}
+                {% for prod in prods3 %}
 				<li class="span3">
 				  <div class="thumbnail">
-					<a  href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/10.jpg' %}" alt=""/></a>
+					<a  href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/6.jpg' %}" alt=""/></a>
 					<div class="caption">
-					  <h5>Product name</h5>
-					  <p> 
-						Lorem Ipsum is simply dummy text. 
+					  <h5>{{ prod.item_desc.name }}</h5>
+					  <p>
+						{{ prod.item_desc.comments }}
 					  </p>
+
 					  <h4 style="text-align:center"><a class="btn" href="{% static 'store/product' %}_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">$222.00</a></h4>
 					</div>
 				  </div>
 				</li>
+                  {% endfor %}
+                {% for prod in prods4 %}
 				<li class="span3">
 				  <div class="thumbnail">
-					<a  href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/11.jpg' %}" alt=""/></a>
+					<a  href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/6.jpg' %}" alt=""/></a>
 					<div class="caption">
-					  <h5>Product name</h5>
-					  <p> 
-						Lorem Ipsum is simply dummy text. 
+					  <h5>{{ prod.item_desc.name }}</h5>
+					  <p>
+						{{ prod.item_desc.comments }}
 					  </p>
-					   <h4 style="text-align:center"><a class="btn" href="{% static 'store/product' %}_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">$222.00</a></h4>
+
+					  <h4 style="text-align:center"><a class="btn" href="{% static 'store/product' %}_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">$222.00</a></h4>
 					</div>
 				  </div>
 				</li>
+                  {% endfor %}
 			  </ul>	
 
 		</div>
