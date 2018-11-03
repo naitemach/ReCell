@@ -15,6 +15,7 @@ Once you've got everything installed, you can create a virtualenv with the
 following command (Run it in ReCell Directory) :
 
     ```
+    cd ReCell
     python3 -m venv virtualenv
     ```
 
