@@ -6,43 +6,38 @@ from django.db import connection
 
 
 def login(request):
-	# if this is a POST request we need to process the form data
-	if request.method == 'POST':
-		# create a form instance and populate it with data from the request:
-		form = LoginForm(request.POST)
-		# check whether it's valid:
-		if form.is_valid():
-			# process the data in form.cleaned_data as required
-			# ...
-			# redirect to a new URL:
-			email = form.cleaned_data['email']
-			user_obj = User.objects.filter(email=form.cleaned_data['email'], password=form.cleaned_data['password'])
-			order_obj = Order.objects.filter(b_id=user_obj.get().u_id)
-			if user_obj.exists():
-				request.session['email'] = email
-				request.session['first_name'] = user_obj.get().first_name
-				request.session['id'] = user_obj.get().u_id
-				request.session['credits'] = user_obj.get().wall.credits
-				request.session['items'] = order_obj.get().items.count()
-				return render(request, 'store/index.html', {'first_name': request.session['first_name'],'credits':request.session['credits'],'items':request.session['items'],'id':request.session['id']})
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            user_obj = User.objects.filter(email=form.cleaned_data['email'], password=form.cleaned_data['password'])
+            if user_obj.exists():
+                request.session['email'] = email
+                request.session['first_name'] = user_obj.get().first_name
+                request.session['id'] = user_obj.get().u_id
+                request.session['credits'] = user_obj.get().wall.credits
+                credits = request.session.get('credits')
+                items = request.session.get('items')
+                id = request.session.get('id')
+                return render(request, 'store/index.html', {'first_name': request.session['first_name'],'credits': credits, 'items': items, 'id':id})
 
-			return render(request, 'store/form.html', {'form': form, 'email': email})
-
-	# if a GET (or any other method) we'll create a blank form
-	else:
-		form = LoginForm()
-
-	return render(request, 'store/login.html', {'form': form})
+            return render(request, 'store/form.html', {'form': form, 'email': email})
+    else:
+        form = LoginForm()
+    return render(request, 'store/login.html', {'form': form})
 
 
 def index(request):
-	fname = request.session.get('first_name')
-	credits = request.session.get('credits')
-	items = request.session.get('items')
-	if fname != None and credits != None:
-		return render(request,'store/index.html',{'first_name':fname,'credits':credits,'items':items})
-	else:
-		return HttpResponse("Fname couldnt be passes succesfully")
+    fname = request.session.get('first_name')
+    credits = request.session.get('credits')
+    items = request.session.get('items')
+    id = request.session.get('id')
+    if fname != None and credits != None:
+        return render(request, 'store/index.html', {'first_name': fname, 'credits': credits, 'items': items, 'id':id})
+    else:
+        return HttpResponse("Fname couldnt be passes succesfully")
+
+
 
 def catResults(request):
 	fname = request.session.get('first_name')
@@ -163,9 +158,30 @@ def productSummary(request):
 		return HttpResponse("Fname couldnt be passes succesfully")
 
 def productReg(request):
-	fname = request.session.get('first_name')
-	credits = request.session.get('credits')
-	items = request.session.get('items')
+    if request.method == 'POST':
+        form = ProdRegistration(request.POST)
+        if form.is_valid():
+            desc = ItemDesc.objects.create(age=form.cleaned_data['age'], name=form.cleaned_data['product_name'],
+                                           comments=form.cleaned_data['additional_information'])
+            desc.save()
 
-	if fname != None and credits != None:
-		return render(request, 'store/product_reg.html', {'first_name':fname,'credits':credits,'items':items})
+            loc = Location.objects.create(zip_code=form.cleaned_data['zip_code'], city_name=form.cleaned_data['city'],
+                                          address=form.cleaned_data['address'])
+            loc.save()
+
+            inv = Inventory.objects.create(category=form.cleaned_data['category'])
+            inv.save()
+            seller_obj = User.objects.get(u_id=2)
+
+            itemObj = Item.objects.create(item_desc=desc, item_status=0, item_seller=seller_obj, item_location=loc,
+                                          item_inventory=inv)
+            itemObj.save()
+
+            return render(request, 'store/test.html', {'test': itemObj.item_id})
+     else:
+        form = ProdRegistration()
+	      fname = request.session.get('first_name')
+	      credits = request.session.get('credits')
+	      items = request.session.get('items')
+	  if fname != None and credits != None:
+		    return render(request, 'store/product_reg.html', {'first_name':fname,'credits':credits,'items':items})
