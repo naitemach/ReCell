@@ -30,3 +30,4 @@ class ProdRegistration(forms.Form):
     state = forms.CharField(label='state', max_length=20)
     zip_code = forms.IntegerField(label='zip_code')
     phone = forms.IntegerField(label='phone')
+    price = forms.IntegerField(label='price')
