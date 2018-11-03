@@ -6,6 +6,7 @@ from django.db import connection
 
 
 def login(request):
+    request.session.flush()
     if request.method == 'POST':
         request.session.flush()
         form = LoginForm(request.POST)
@@ -14,13 +15,16 @@ def login(request):
             user_obj = User.objects.filter(email=form.cleaned_data['email'], password=form.cleaned_data['password'])
 
             if user_obj.exists():
-                order_obj = Order.objects.filter(b_id=user_obj.get().u_id)
+                id = user_obj.get().u_id
+                order_obj = Order.objects.filter(b_id=id)
                 request.session.flush()
+                cart = []
+                request.session['cart'] = cart
                 request.session['email'] = email
                 request.session['first_name'] = user_obj.get().first_name
                 request.session['id'] = user_obj.get().u_id
                 request.session['credits'] = user_obj.get().wall.credits
-                request.session['items'] = 0
+                request.session['items'] = len(cart)
                 request.session['is_seller'] = user_obj.get().is_seller
                 inv_obj1 = Inventory.objects.get(inv_id=1)
                 prods1 = Item.objects.filter(item_inventory=inv_obj1)
@@ -33,14 +37,17 @@ def login(request):
 
                 if request.session['is_seller']:
                     request.session['is_seller'] = 1
+                    seller_obj = User.objects.get(u_id=id)
+                    prods = Item.objects.filter(item_seller=seller_obj)
                     return render(request, 'store/sales.html',
-                                  {'first_name': request.session['first_name'], 'credits': request.session['credits'],
-                                   'id': request.session['id'], 'is_seller': 1})
+                                  {'first_name': request.session['first_name'], 'credits': credits, 'is_seller': 1,
+                                   'prods': prods})
+
                 else:
                     if order_obj.exists():
                         return render(request, 'store/index.html', {'first_name': request.session['first_name'],
                                                                     'credits': request.session['credits'],
-                                                                    'items': request.session['items'],
+                                                                    'items': len(cart),
                                                                     'id': request.session['id'],
                                                                     'is_seller': request.session['is_seller'],
                                                                     'prods1': prods1,
@@ -51,7 +58,7 @@ def login(request):
                         request.session['items'] = 0
                         return render(request, 'store/index.html', {'first_name': request.session['first_name'],
                                                                     'credits': request.session['credits'],
-                                                                    'items': request.session['items'],
+                                                                    'items': len(cart),
                                                                     'id': request.session['id'],
                                                                     'is_seller': request.session['is_seller'],
                                                                     'prods1': prods1,
@@ -68,7 +75,7 @@ def login(request):
 def index(request):
     fname = request.session.get('first_name')
     credits = request.session.get('credits')
-    items = request.session.get('items')
+    items = len(request.session.get('cart'))
     id = request.session.get('id')
     is_seller = request.session.get('is_seller')
     inv_obj1 = Inventory.objects.get(inv_id=1)
@@ -91,7 +98,7 @@ def index(request):
 def catResults(request):
     fname = request.session.get('first_name')
     credits = request.session.get('credits')
-    items = request.session.get('items')
+    items = len(request.session.get('cart'))
 
     if credits != None:
         return render(request, 'store/cat_results.html', {'first_name': fname, 'credits': credits, 'items': items})
@@ -102,12 +109,22 @@ def catResults(request):
 def productDetails(request):
     fname = request.session.get('first_name')
     credits = request.session.get('credits')
-    items = request.session.get('items')
+    items = len(request.session.get('cart'))
+    if request.method == 'GET':
+        item_id = request.GET.get('item')
+        if not item_id:
+            if fname != None and credits != None:
+                return render(request, 'store/product_details.html',
+                              {'first_name': fname, 'credits': credits, 'items': items})
+            else:
+                return HttpResponse("Fname couldnt be passes succesfully")
+        else:
+            item = Item.objects.get(item_id = item_id)
+            return render(request, 'store/product_details.html',
+                              {'first_name': fname, 'credits': credits, 'items': items, 'prod':item})
 
-    if fname != None and credits != None:
-        return render(request, 'store/product_details.html', {'first_name': fname, 'credits': credits, 'items': items})
-    else:
-        return HttpResponse("Fname couldnt be passes succesfully")
+
+
 
 
 def register(request):
@@ -159,7 +176,7 @@ def register(request):
 def search(request):
     fname = request.session.get('first_name')
     credits = request.session.get('credits')
-    items = request.session.get('items')
+    items = len(request.session.get('cart'))
     if credits != None:
         return render(request, 'store/search_results.html', {'first_name': fname, 'credits': credits, 'items': items})
     else:
@@ -169,7 +186,7 @@ def search(request):
 def sales(request):
     fname = request.session.get('first_name')
     credits = request.session.get('credits')
-    items = request.session.get('items')
+    items = len(request.session.get('cart'))
     id = request.session.get('id')
     is_seller = request.session.get('is_seller')
     seller_obj = User.objects.get(u_id=id)
@@ -186,7 +203,7 @@ def sales(request):
 def orders(request):
     fname = request.session.get('first_name')
     credits = request.session.get('credits')
-    items = request.session.get('items')
+    items = len(request.session.get('cart'))
     id = request.session.get('id')
     is_seller = request.session.get('is_seller')
     buy_obj = User.objects.get(u_id=id)
@@ -215,7 +232,7 @@ def display(request):
 def productSummary(request):
     fname = request.session.get('first_name')
     credits = request.session.get('credits')
-    items = request.session.get('items')
+    items = len(request.session.get('cart'))
 
     if credits != None:
         return render(request, 'store/product_summary.html', {'first_name': fname, 'credits': credits, 'items': items})
@@ -245,7 +262,7 @@ def productReg(request):
             itemObj = Item.objects.create(item_desc=desc, item_status=0, item_seller=seller_obj, item_location=loc,
                                           item_inventory=inv)
             itemObj.save()
-            request.session['items'] = request.session.get('items') + 1
+            request.session['items'] = len(request.session.get('cart')) + 1
             prods = Item.objects.filter(item_seller=seller_obj)
             return render(request, 'store/sales.html',
                           {'first_name': request.session['first_name'], 'credits': request.session['credits'],
@@ -254,7 +271,7 @@ def productReg(request):
         form = ProdRegistration()
         fname = request.session.get('first_name')
         credits = request.session.get('credits')
-        items = request.session.get('items')
+        items = len(request.session.get('cart'))
         id = request.session.get('id')
         is_seller = request.session.get('is_seller')
         return render(request, 'store/product_reg.html',
