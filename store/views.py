@@ -113,6 +113,7 @@ def register(request):
             else:
                 obj.is_seller = False
             obj.save()
+            
 
             request.session.flush()
             request.session['email'] = email
