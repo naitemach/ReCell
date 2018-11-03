@@ -92,9 +92,14 @@ def catResults(request):
     fname = request.session.get('first_name')
     credits = request.session.get('credits')
     items = request.session.get('items')
+    if request.REQUEST=='GET':
+        cat_id=request.GET.get('cat')
+        inv_obj = Inventory.objects.get(inv_id=cat_id)
+        prods = Item.objects.filter(item_inventory=inv_obj)
 
     if credits != None:
-        return render(request, 'store/cat_results.html', {'first_name': fname, 'credits': credits, 'items': items})
+        return render(request, 'store/cat_results.html', {'first_name': fname, 'credits': credits, 'items': items,
+                                                          'products':prods})
     else:
         return HttpResponse("Fname couldnt be passes succesfully")
 
