@@ -18,3 +18,15 @@ class RegisterForm(forms.Form):
     zip_code = forms.IntegerField(label='zip_code')
     mobile = forms.IntegerField(label='mobile')
     seller = forms.CharField(label='seller')
+
+
+class ProdRegistration(forms.Form):
+    category = forms.CharField(label='category')
+    product_name = forms.CharField(label='product_name', max_length=100)
+    age = forms.IntegerField(label='age')
+    additional_information = forms.CharField(label='additional_information', max_length=500)
+    address = forms.CharField(label='address', max_length=200)
+    city = forms.CharField(label='city', max_length=50)
+    state = forms.CharField(label='state', max_length=20)
+    zip_code = forms.IntegerField(label='zip_code')
+    phone = forms.IntegerField(label='phone')
