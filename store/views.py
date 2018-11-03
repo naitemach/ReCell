@@ -51,11 +51,21 @@ def index(request):
     items = request.session.get('items')
     id = request.session.get('id')
     is_seller = request.session.get('is_seller')
+    inv_obj1 = Inventory.objects.get(inv_id=1)
+    prods1 = Item.objects.filter(item_inventory=inv_obj1)
+    inv_obj2 = Inventory.objects.get(inv_id=2)
+    prods2 = Item.objects.filter(item_inventory=inv_obj2)
+    inv_obj3 = Inventory.objects.get(inv_id=3)
+    prods3 = Item.objects.filter(item_inventory=inv_obj3)
+    inv_obj4 = Inventory.objects.get(inv_id=4)
+    prods4 = Item.objects.filter(item_inventory=inv_obj4)
+
     if fname != None and credits != None:
         return render(request, 'store/index.html',
-                      {'first_name': fname, 'credits': credits, 'items': items, 'is_seller': is_seller, 'id': id})
+                      {'first_name': fname, 'credits': credits, 'items': items, 'is_seller': is_seller, 'id': id,
+                       'prods1': prods1,'prods2':prods2,'prods3':prods3,'prods4':prods4})
     else:
-        return render(request, 'store/index.html')
+        return render(request, 'store/index.html',{'prods1': prods1,'prods2':prods2,'prods3':prods3,'prods4':prods4})
 
 
 def catResults(request):
@@ -116,7 +126,9 @@ def register(request):
             request.session['first_name'] = first_name
             request.session['id'] = obj.u_id
             request.session['is_seller'] = obj.is_seller
-            return render(request, 'store/index.html', {'first_name': first_name, 'credits': credits, 'items': 0, 'is_seller': obj.is_seller, 'id': obj.u_id})
+            return render(request, 'store/index.html',
+                          {'first_name': first_name, 'credits': credits, 'items': 0, 'is_seller': obj.is_seller,
+                           'id': obj.u_id})
 
     else:
         form = RegisterForm()
@@ -139,12 +151,13 @@ def sales(request):
     items = request.session.get('items')
     id = request.session.get('id')
     is_seller = request.session.get('is_seller')
-    seller_obj = User.objects.get(u_id = id)
+    seller_obj = User.objects.get(u_id=id)
     prods = Item.objects.filter(item_seller=seller_obj)
 
     if fname != None and credits != None:
         return render(request, 'store/sales.html',
-                      {'first_name': fname, 'credits': credits, 'items': items, 'is_seller': is_seller, 'id': id, 'prods':prods})
+                      {'first_name': fname, 'credits': credits, 'items': items, 'is_seller': is_seller, 'id': id,
+                       'prods': prods})
     else:
         return HttpResponse("Fname couldnt be passes succesfully")
 
@@ -191,7 +204,8 @@ def productReg(request):
         form = ProdRegistration(request.POST)
         if form.is_valid():
             desc = ItemDesc.objects.create(age=form.cleaned_data['age'], name=form.cleaned_data['product_name'],
-                                           comments=form.cleaned_data['additional_information'],price=form.cleaned_data['price'])
+                                           comments=form.cleaned_data['additional_information'],
+                                           price=form.cleaned_data['price'])
             desc.save()
 
             loc = Location.objects.create(zip_code=form.cleaned_data['zip_code'], city_name=form.cleaned_data['city'],
@@ -210,7 +224,7 @@ def productReg(request):
             prods = Item.objects.filter(item_seller=seller_obj)
             return render(request, 'store/sales.html',
                           {'first_name': request.session['first_name'], 'credits': request.session['credits'],
-                           'id': request.session['id'], 'is_seller': request.session['is_seller'],'prods':prods})
+                           'id': request.session['id'], 'is_seller': request.session['is_seller'], 'prods': prods})
 
     else:
         form = ProdRegistration()
