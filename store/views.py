@@ -22,6 +22,15 @@ def login(request):
                 request.session['credits'] = user_obj.get().wall.credits
                 request.session['items'] = 0
                 request.session['is_seller'] = user_obj.get().is_seller
+                inv_obj1 = Inventory.objects.get(inv_id=1)
+                prods1 = Item.objects.filter(item_inventory=inv_obj1)
+                inv_obj2 = Inventory.objects.get(inv_id=2)
+                prods2 = Item.objects.filter(item_inventory=inv_obj2)
+                inv_obj3 = Inventory.objects.get(inv_id=3)
+                prods3 = Item.objects.filter(item_inventory=inv_obj3)
+                inv_obj4 = Inventory.objects.get(inv_id=4)
+                prods4 = Item.objects.filter(item_inventory=inv_obj4)
+
                 if request.session['is_seller']:
                     request.session['is_seller'] = 1
                     return render(request, 'store/sales.html',
@@ -33,14 +42,22 @@ def login(request):
                                                                     'credits': request.session['credits'],
                                                                     'items': request.session['items'],
                                                                     'id': request.session['id'],
-                                                                    'is_seller': request.session['is_seller']})
+                                                                    'is_seller': request.session['is_seller'],
+                                                                    'prods1': prods1,
+                                                                    'prods2': prods2,
+                                                                    'prods3': prods3,
+                                                                    'prods4': prods4})
                     else:
                         request.session['items'] = 0
                         return render(request, 'store/index.html', {'first_name': request.session['first_name'],
                                                                     'credits': request.session['credits'],
                                                                     'items': request.session['items'],
                                                                     'id': request.session['id'],
-                                                                    'is_seller': request.session['is_seller']})
+                                                                    'is_seller': request.session['is_seller'],
+                                                                    'prods1': prods1,
+                                                                    'prods2': prods2,
+                                                                    'prods3': prods3,
+                                                                    'prods4': prods4})
 
             return render(request, 'store/form.html', {'form': form, 'email': email})
     else:

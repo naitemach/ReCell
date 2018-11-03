@@ -77,8 +77,8 @@
 	 			document.getElementById("link1").href="{% url 'productReg'%}";
 	 		}
 	 		else{
-	 			document.getElementById("link1").innerHTML="Your Orders";
-	 			document.getElementById("link1").href="{% url 'orders'%}";
+	 			document.getElementById("link1").innerHTML="Continue Shopping";
+	 			document.getElementById("link1").href="{% url 'index'%}";
 
 	 		}
 	 	}
@@ -293,7 +293,7 @@
 
 </div>
 
-	<a href="{% static 'store/compair.html' %}" class="btn btn-large pull-right">Continue Shopping</a>
+	<a href="{% url 'index' %}" class="btn btn-large pull-right">Continue Shopping</a>
 	<div class="pagination">
 			<ul>
 			<li><a href="{% static 'store/#' %}">&lsaquo;</a></li>

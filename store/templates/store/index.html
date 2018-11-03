@@ -183,49 +183,46 @@
 			<div id="featured">
 			  <div class="item active">
 			  <ul class="thumbnails">
-                  {%  for prod in prods %}
 				<li class="span3">
 				  <div class="thumbnail">
 				  <i class="tag"></i>
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b1.jpg' %}" alt=""></a>
 					<div class="caption">
-					  <h5>{{ prod.item_desc.name }}</h5>
-                        <h5>Hwleljfdslkfhnsljkdfhlkjsdfh</h5>
-					  <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">Rs. {{ prod.item_desc.price }}</span></h4>
+					  <h5>Product Name</h5>
+					  <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$200</span></h4>
 					</div>
 				  </div>
 				</li>
-                  {% endfor %}
-{#				<li class="span3">#}
-{#				  <div class="thumbnail">#}
-{#				  <i class="tag"></i>#}
-{#					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b2.jpg' %}" alt=""></a>#}
-{#					<div class="caption">#}
-{#					  <h5>Product name</h5>#}
-{#					  <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>#}
-{#					</div>#}
-{#				  </div>#}
-{#				</li>#}
-{#				<li class="span3">#}
-{#				  <div class="thumbnail">#}
-{#				  <i class="tag"></i>#}
-{#					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b3.jpg' %}" alt=""></a>#}
-{#					<div class="caption">#}
-{#					  <h5>Product name</h5>#}
-{#					   <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>#}
-{#					</div>#}
-{#				  </div>#}
-{#				</li>#}
-{#				<li class="span3">#}
-{#				  <div class="thumbnail">#}
-{#				  <i class="tag"></i>#}
-{#					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b4.jpg' %}" alt=""></a>#}
-{#					<div class="caption">#}
-{#					  <h5>Product name</h5>#}
-{#					   <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>#}
-{#					</div>#}
-{#				  </div>#}
-{#				</li>#}
+				<li class="span3">
+				  <div class="thumbnail">
+				  <i class="tag"></i>
+					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b2.jpg' %}" alt=""></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					  <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+				  <i class="tag"></i>
+					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b3.jpg' %}" alt=""></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					   <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
+				<li class="span3">
+				  <div class="thumbnail">
+				  <i class="tag"></i>
+					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b4.jpg' %}" alt=""></a>
+					<div class="caption">
+					  <h5>Product name</h5>
+					   <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
+					</div>
+				  </div>
+				</li>
 			  </ul>
 			  </div>
 		</div>
