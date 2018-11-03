@@ -32,16 +32,14 @@
     <link rel="apple-touch-icon-precomposed" href="{% static 'store/themes/images/ico/apple-touch-icon-57-precomposed.png' %}">
 	<style type="text/css" id="enject"></style>
   </head>
-<body>
+<body onload="testfunc()">
 <div id="header">
 <div class="container">
 <div id="welcomeLine" class="row">
-	<div class="span6">Welcome<strong> {{first_name}}!</strong></div>
+	<div class="span6">Welcome <strong>{{ first_name }}!</strong></div>
 	<div class="span6">
 	<div class="pull-right">
-		<a href="{% static 'store/product_summary.html' %}"><span>&pound;</span></a>
-		<span class="btn btn-mini">{{credits}}</span>
-		<a href="{% static 'store/product_summary.html' %}"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i>Items in your cart </span> </a>
+		<span class="btn btn-mini">Your credits : {{credits}}</span>
 	</div>
 	</div>
 </div>
@@ -63,23 +61,43 @@
 			<option>HEALTH & BEAUTY </option>
 			<option>SPORTS & LEISURE </option>
 			<option>BOOKS & ENTERTAINMENTS </option>
-		</select>
+		</select> 
 		  <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
     </form>
     <ul id="topMenu" class="nav pull-right">
-	 <li class=""><a href="{% static 'store/special_offer.html' %}">Specials Offer</a></li>
-	 <li class=""><a href="{% static 'store/normal.html' %}">Delivery</a></li>
-	 <li class=""><a href="{% static 'store/contact.html' %}">Contact</a></li>
+	 <li class=""><a href="" id = "link1"></a></li>
+	 <li class=""><a href="" id="link2"></a></li>
 	 <li class="">
-	 <a href="{% static 'store/#' %}login" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success">Login</span></a>
+	 	<script type="text/javascript">
+	 		function testfunc(){
+	 		var id = "{{id}}"
+	 		var is_seller = "{{is_seller}}"
+	 		if (id){
+	 			document.getElementById("testingthis").innerHTML="LOGOUT";
+	 		}
+	 		else{
+	 			document.getElementById('testingthis').innerHTML="LOGIN";
+	 		}
+	 		if(is_seller){
+	 			document.getElementById("link1").innerHTML="Add Item";
+	 			document.getElementById("link1").href="{% url 'productReg'%}";
+	 		}
+	 		else{
+	 			document.getElementById("link1").innerHTML="Your Orders";
+	 			document.getElementById("link1").href="{% url 'orders'%}";
+
+	 		}
+	 	}
+	 	</script>
+	 <a href="{% url 'login' %}" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success" id = "testingthis"></span></a>
 	<div id="login" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="login" aria-hidden="false" >
 		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<h3>Login Block</h3>
 		  </div>
 		  <div class="modal-body">
 			<form class="form-horizontal loginFrm">
-			  <div class="control-group">
+			  <div class="control-group">								
 				<input type="text" id="inputEmail" placeholder="Email">
 			  </div>
 			  <div class="control-group">
@@ -90,7 +108,7 @@
 				<input type="checkbox"> Remember me
 				</label>
 			  </div>
-			</form>
+			</form>		
 			<button type="submit" class="btn btn-success">Sign in</button>
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 		  </div>
