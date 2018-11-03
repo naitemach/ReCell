@@ -233,11 +233,40 @@ def productSummary(request):
     fname = request.session.get('first_name')
     credits = request.session.get('credits')
     items = len(request.session.get('cart'))
+    cart = request.session.get('cart')
+    prods = []
+    total=0
+    for id in cart:
+        it = Item.objects.get(item_id=id)
+        prods.append(it)
+        total+=it.item_desc.price
+    if request.method == 'GET':
+        item_id = request.GET.get('item')
+        checkout = request.GET.get('checkout')
+        if checkout:
+            if int(checkout) == 1:
+                ord = Order.objects.create(b_id_id=request.session['id'])
+                for it in prods:
+                    ord.items.add(it)
+                ord.save()
+                request.session['cart'] = []
+                cart = []
+                return HttpResponse("Order Taken")
+        if not item_id:
+            if fname != None and credits != None:
+                return render(request, 'store/product_summary.html',
+                              {'first_name': fname, 'credits': credits, 'items': items,'prods': prods,'total':total})
+            else:
+                return HttpResponse("Fname couldnt be passes succesfully")
+        else:
+            cart.append(item_id)
+            request.session['cart'] = cart
+            it = Item.objects.get(item_id=item_id)
+            prods.append(it)
+            total+=it.item_desc.price
+            return render(request, 'store/product_summary.html',
+                          {'first_name': fname, 'credits': credits, 'items': items, 'prods': prods,'total':total})
 
-    if credits != None:
-        return render(request, 'store/product_summary.html', {'first_name': fname, 'credits': credits, 'items': items})
-    else:
-        return HttpResponse("Fname couldnt be passes succesfully")
 
 
 def productReg(request):
