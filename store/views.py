@@ -58,8 +58,8 @@ def login(request):
                                                                     'prods2': prods2,
                                                                     'prods3': prods3,
                                                                     'prods4': prods4})
-
-            return render(request, 'store/form.html', {'form': form, 'email': email})
+            error = "Account does not exists. Please register"
+            return render(request, 'store/login.html', {'form': form, 'error': error})
     else:
         form = LoginForm()
     return render(request, 'store/login.html', {'form': form})
@@ -118,7 +118,7 @@ def register(request):
             user_obj = User.objects.filter(email=form.cleaned_data['email'])
             if user_obj.exists():
                 error = "Account with given Email ID already exists"
-                return render(request, 'store/register.html', {'error': error})
+                return render(request, 'store/register.html', {'form':form,'error': error})
             first_name = form.cleaned_data['first_name']
             loci = Location.objects.create()
             loci.city_name = form.cleaned_data['city']
@@ -227,6 +227,7 @@ def productReg(request):
     if request.method == 'POST':
         form = ProdRegistration(request.POST)
         if form.is_valid():
+
             desc = ItemDesc.objects.create(age=form.cleaned_data['age'], name=form.cleaned_data['product_name'],
                                            comments=form.cleaned_data['additional_information'],
                                            price=form.cleaned_data['price'])
@@ -249,7 +250,6 @@ def productReg(request):
             return render(request, 'store/sales.html',
                           {'first_name': request.session['first_name'], 'credits': request.session['credits'],
                            'id': request.session['id'], 'is_seller': request.session['is_seller'], 'prods': prods})
-
     else:
         form = ProdRegistration()
         fname = request.session.get('first_name')
@@ -257,6 +257,6 @@ def productReg(request):
         items = request.session.get('items')
         id = request.session.get('id')
         is_seller = request.session.get('is_seller')
-    return render(request, 'store/product_reg.html',
+        return render(request, 'store/product_reg.html',
                   {'form': form, 'first_name': fname, 'credits': credits, 'items': items, 'is_seller': is_seller,
                    'id': id})
