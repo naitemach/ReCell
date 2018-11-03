@@ -188,11 +188,14 @@ def orders(request):
     items = request.session.get('items')
     id = request.session.get('id')
     is_seller = request.session.get('is_seller')
+    buy_obj = User.objects.get(u_id=id)
+    orders = Order.objects.filter(b_id=buy_obj)
     if fname != None and credits != None:
         return render(request, 'store/orders.html',
-                      {'first_name': fname, 'credits': credits, 'items': items, 'is_seller': is_seller, 'id': id})
+                      {'first_name': fname, 'credits': credits, 'items': items, 'is_seller': is_seller, 'id': id,
+                       'orders': orders})
     else:
-        return HttpResponse("Fname couldnt be passes succesfully")
+        return HttpResponse("Fname couldnt be passed succesfully")
 
 
 def display(request):
