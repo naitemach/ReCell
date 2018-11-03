@@ -44,7 +44,7 @@ class Location(models.Model):
 
 class Inventory(models.Model):
     inv_id = models.AutoField(primary_key=True)
-
+    category = models.CharField(null=True,max_length=100)
     def publish(self):
         self.published_date = timezone.now()
         self.save()
