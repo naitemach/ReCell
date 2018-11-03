@@ -34,7 +34,7 @@ def login(request):
 
 
 def index(request):
-	return render(request, 'store/index.html', {})
+	return render(request, 'store/cat_results.html', {})
 
 
 def profile(request):
