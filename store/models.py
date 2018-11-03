@@ -74,6 +74,7 @@ class ItemDesc(models.Model):
     age = models.IntegerField()
     name = models.CharField(max_length=30)
     comments = models.TextField()
+    price = models.IntegerField(null=True)
 
     # pic = models.ImageField(upload_to='ENTER VALID LINK HERE')
 
