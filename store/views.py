@@ -24,7 +24,7 @@ def login(request):
 				request.session['id'] = user_obj.get().u_id
 				request.session['credits'] = user_obj.get().wall.credits
 				request.session['items'] = order_obj.get().items.count()
-				return render(request, 'store/index.html', {'first_name': request.session['first_name'],'credits':request.session['credits'],'items':request.session['items']})
+				return render(request, 'store/index.html', {'first_name': request.session['first_name'],'credits':request.session['credits'],'items':request.session['items'],'id':request.session['id']})
 
 			return render(request, 'store/form.html', {'form': form, 'email': email})
 
@@ -36,10 +36,6 @@ def login(request):
 
 
 def index(request):
-	return render(request, 'store/login.html', {})
-
-
-def profile(request):
 	fname = request.session.get('first_name')
 	credits = request.session.get('credits')
 	items = request.session.get('items')
@@ -47,6 +43,17 @@ def profile(request):
 		return render(request,'store/index.html',{'first_name':fname,'credits':credits,'items':items})
 	else:
 		return HttpResponse("Fname couldnt be passes succesfully")
+
+def catResults(request):
+	fname = request.session.get('first_name')
+	credits = request.session.get('credits')
+	items = request.session.get('items')
+
+	if credits != None:
+		return render(request, 'store/cat_results.html', {'first_name':fname,'credits':credits,'items':items})	
+	else:
+		return HttpResponse("Fname couldnt be passes succesfully")
+	
 
 def productDetails(request):
 	fname = request.session.get('first_name')
