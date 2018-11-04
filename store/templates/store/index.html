@@ -31,10 +31,10 @@
 <div id="welcomeLine" class="row">
 	<div class="span6">Welcome <strong>{{ first_name }}!</strong></div>
 	<div class="span6">
-	<div class="pull-right">
-		<a href="{% static 'store/product' %}_summary.html"><span>&#8377;</span></a>
+	<div class="pull-right" id = "cc" style="display: block;">
+		<span>&#8377;</span>
 		<span class="btn btn-mini">{{credits}}</span>
-		<a href="{% url 'productSummary'%}"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i>{{items}} Item(s) in your cart </span> </a> 
+		<a href="{% url 'cart'%}"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i>{{items}} Item(s) in your cart </span> </a> 
 	</div>
 	</div>
 </div>
@@ -46,18 +46,12 @@
 	<span class="icon-bar"></span>
 </a>
   <div class="navbar-inner">
-    <a class="brand" href="{% static 'store/index.html' %}"><img src="{% static 'store/themes/images/logo.png' %}" alt="Bootsshop"/></a>
-		<form class="form-inline navbar-search" method="post" action="products.html" >
-		<input id="srchFld" class="srchTxt" type="text" />
-		  <select class="srchTxt">
-			<option>All</option>
-			<option>CLOTHES </option>
-			<option>FOOD AND BEVERAGES </option>
-			<option>HEALTH & BEAUTY </option>
-			<option>SPORTS & LEISURE </option>
-			<option>BOOKS & ENTERTAINMENTS </option>
-		</select> 
-		  <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
+    <a class="brand" href="{% url 'index' %}"><img style="width:120px; height:45px" src="{% static 'store/themes/images/logo.png' %}" alt="ReCell"/></a>
+    <form class="form-inline navbar-search" method="get" action="{% url 'search' %}" >
+    {% csrf_token %}
+
+    <input id="id_search" class="srchTxt" type="text" name="search" value="{{ query }}" />
+    <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
     </form>
     <ul id="topMenu" class="nav pull-right">
 	 <li class=""><a href="" id = "link1"></a></li>

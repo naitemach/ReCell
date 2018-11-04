@@ -68,7 +68,9 @@ def login(request):
 def index(request):
     fname = request.session.get('first_name')
     credits = request.session.get('credits')
-    items = request.session.get('items')
+    items = 0
+    if request.session.get('cart') is not None:
+        items = len(request.session.get('cart'))
     id = request.session.get('id')
     is_seller = request.session.get('is_seller')
     inv_obj1 = Inventory.objects.get(inv_id=1)
@@ -159,9 +161,16 @@ def register(request):
 def search(request):
     fname = request.session.get('first_name')
     credits = request.session.get('credits')
-    items = request.session.get('items')
+
+    # items = request.session.get('items')
+    if request.method == 'GET':  # If the form is submitted
+        search_query = request.GET.get('search', None)
+        desc = ItemDesc.objects.filter(name=search_query)
+    items = 0
+    if request.session.get('cart') is not None:
+        items = len(request.session.get('cart'))
     if credits != None:
-        return render(request, 'store/search_results.html', {'first_name': fname, 'credits': credits, 'items': items})
+        return render(request, 'store/search_results.html',{'first_name': fname, 'credits': credits, 'items': items, 'search': search_query, 'desc': desc})
     else:
         return HttpResponse("Fname couldnt be passes succesfully")
 
@@ -212,13 +221,14 @@ def display(request):
                   {'item': item, 'itemdesc': itemdesc, 'first_name': fname, 'items': item})
 
 
-def productSummary(request):
+def cart(request):
     fname = request.session.get('first_name')
     credits = request.session.get('credits')
     items = request.session.get('items')
-
+    id = request.session.get('id')
+    is_seller = request.session.get('is_seller')
     if credits != None:
-        return render(request, 'store/product_summary.html', {'first_name': fname, 'credits': credits, 'items': items})
+        return render(request, 'store/cart.html', {'first_name': fname, 'credits': credits, 'items': items, 'is_seller': is_seller,'id': id})
     else:
         return HttpResponse("Fname couldnt be passes succesfully")
 
