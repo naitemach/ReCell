@@ -1,4 +1,4 @@
-# ReCell : Django Application
+# ReCell : Django Application for Sale of Used Products
 
 ## Getting set up
 
