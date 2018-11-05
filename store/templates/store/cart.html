@@ -34,7 +34,7 @@
 	<div class="pull-right" id = "cc" style="display: block;">
 		<span>&#8377;</span>
 		<span class="btn btn-mini">{{credits}}</span>
-		<a href="{% url 'cart'%}"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i>{{items}} Item(s) in your cart </span> </a> 
+		<a href="{% url 'cart'%}" style="display:none;"><span class="btn btn-mini btn-primary"><i class="icon-shopping-cart icon-white"></i>{{items}} Item(s) in your cart </span> </a> 
 	</div>
 	</div>
 </div>
@@ -54,7 +54,7 @@
     <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
     </form>
     <ul id="topMenu" class="nav pull-right">
-	 <li class=""><a href="" id = "link1" style="display: block;"></a></li>
+	 <li class=""><a href="" id = "link1"></a></li>
 	 <li class="">
 	 	<script type="text/javascript">
 	 		function testfunc(){
@@ -62,17 +62,9 @@
 	 		var is_seller = "{{is_seller}}"
 	 		if (id){
 	 			document.getElementById("testingthis").innerHTML="LOGOUT";
-	 			document.getElementById("link1").style.display = 'block';
-	 			document.getElementById("loginurl").href="{% url 'login' %}";
-	 			document.getElementById("cc").style.display = 'block';
-
 	 		}
 	 		else{
-	 			document.getElementById('testingthis').innerHTML="REGISTER";
-	 			document.getElementById("loginurl").href="{% url 'register' %}";
-	 			document.getElementById("link1").style.display = 'none';
-	 			document.getElementById("cc").style.display = 'none';
-
+	 			document.getElementById('testingthis').innerHTML="LOGIN";
 	 		}
 	 		if(is_seller == 1){
 	 			document.getElementById("link1").innerHTML="Add Item";
@@ -86,7 +78,7 @@
 	 		}
 	 	}
 	 	</script>
-	 <a href="{% url 'login' %}" id = "loginurl" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success" id = "testingthis"></span></a>
+	 <a href="{% url 'login' %}" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success" id = "testingthis"></span></a>
 	</li>
     </ul>
   </div>
@@ -94,6 +86,7 @@
 </div>
 </div>
 <!-- Header End -->
+<!-- Main content -->
 <div id="mainBody">
 	<div class="container">
 	<div class="row">
@@ -111,64 +104,66 @@
 				</ul>
 			</li>
 
-		<br/>
+		</ul>
 
 	</div>
 <!-- Sidebar end -->
 	<div class="span9">
-	<h3> Login</h3>	
+	<h3>  SHOPPING CART [ <small>{{items}} Item(s) </small>]<a href="{% url 'index' %}" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>	
 	<hr class="soft"/>
 	
-	<div class="row">
-		<div class="span4">
-			<div class="well">
-			<form action="login" method="post" id="login">
-                {% csrf_token %}
+	<table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Description</th>
+                    <th>Cancel</th>
+				  <th>Price</th>
+                  <th>Discount</th>
+                  <th>Tax</th>
+                  <th>Total</th>
+				</tr>
+              </thead>
+              <tbody>
+              {% for prod in prods %}
+                <tr>
+                  <td> <img width="60" src="{% static 'store/themes/images/products/4.jpg' %}" alt=""/></td>
+                  <td>{{ prod.item_desc.name }}<br/>Seller : {{ prod.item_inventory.category }}</td>
+                    <td>
+					<div class="input-append"><a href="/cart/?item={{ prod.item_id }}&cancel=1" ><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button>				</div>
+				  </td>
+                  <td>${{ prod.item_desc.price }}</td>
+                  <td>$0</td>
+                  <td>$0</td>
+                  <td>${{ prod.item_desc.price }}</td>
+                </tr>
+              {%  endfor %}
+                <tr>
+                  <td colspan="6" style="text-align:right">Total Price:	</td>
+                  <td> {{ total }}</td>
+                </tr>
+				 <tr>
+                  <td colspan="6" style="text-align:right">Total Discount:	</td>
+                  <td> $0.00</td>
+                </tr>
+                 <tr>
+                  <td colspan="6" style="text-align:right">Total Tax:	</td>
+                  <td> $0.00</td>
+                </tr>
+				 <tr>
+                  <td colspan="6" style="text-align:right"><strong>TOTAL =</strong></td>
+                  <td class="label label-important" style="display:block"> <strong> {{ total }} </strong></td>
+                </tr>
+				</tbody>
+            </table>
+		
+	<a href="{% url 'index' %}" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
 
-			  <div class="control-group">
-				<label class="control-label" for="id_email">Email</label>
-				<div class="controls">
-				  <input class="span3"  type="email" id="id_email" name ="email" placeholder="Email">
+	<a href="/cart/?checkout=1" class="btn btn-large pull-right">Checkout <i class="icon-arrow-right"></i></a>
 
-				</div>
-			  </div>
-			  <div class="control-group">
-				<label class="control-label" for="id_password">Password</label>
-				<div class="controls">
-				  <input type="password" class="span3"  id="id_password" name ="password" placeholder="Password">
-
-				</div>
-			  </div>
-			  <div class="control-group">
-				<div class="controls">
-				  <button type="submit" class="btn">Sign in</button> <a href="{% static 'store/forgetpass.html' %}">Forget password?</a>
-				</div>
-			  </div>
-			</form>
-		</div>
-		</div>
-		<div class="span1"> &nbsp;</div>
-		<div class="span4">
-			<div class="well">
-			<h5>NOT REGISTERED?</h5>Enter your e-mail address to create an account.<br/><br/>
-			<form action={% url 'register' %}>
-			  <div class="control-group">
-				<label class="control-label" for="inputEmail0">E-mail address</label>
-				<div class="controls">
-				  <input class="span3"  type="text" id="inputEmail0" placeholder="Email">
-				</div>
-			  </div>
-			  <div class="controls">
-			  <button type="submit" class="btn block">Create Your Account</button>
-			  </div>
-			</form>
-		</div>
-		</div>
-	</div>	
 </div>
 </div></div>
 </div>
-<!-- MainBody End -->
 <!-- Footer -->
 	<div  id="footerSection">
 	<div class="container">
