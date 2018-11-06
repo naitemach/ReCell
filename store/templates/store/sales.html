@@ -47,12 +47,6 @@
 </a>
   <div class="navbar-inner">
     <a class="brand" href="{% url 'index' %}"><img style="width:120px; height:45px" src="{% static 'store/themes/images/logo.png' %}" alt="ReCell"/></a>
-    <form class="form-inline navbar-search" method="get" action="{% url 'search' %}" >
-    {% csrf_token %}
-
-    <input id="id_search" class="srchTxt" type="text" name="search" value="{{ query }}" />
-    <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
-    </form>
     <ul id="topMenu" class="nav pull-right">
 	 <li class=""><a href="" id = "link1"></a></li>
 	 <li class="">
@@ -130,7 +124,7 @@
 {#			</div>#}
 {#			<div class="span3 alignR">#}
 {#			<form class="form-horizontal qtyFrm">#}
-{#			<h3> $140.00</h3>#}
+{#			<h3> &#8377;140.00</h3>#}
 {#			<label class="checkbox">#}
 {#				<input type="checkbox">  Adds product to compair#}
 {#			</label><br/>#}
@@ -150,7 +144,7 @@
 			<div class="span4">
             <h5>Category : <span> {{ prod.item_inventory.category }}</span></h5>
                 {% if prod.item_status == 0  %}
-				<h4>Status : <span style="color:green">Not Sold</span></h4>
+				<h4>Status : <span style="color:red">Not Sold</span></h4>
                 {% else %}
                 <h4>Status : <span style="color:green">Sold</span></h4>
                     <h5>Customer name : <span> Nachiket</span></h5>
@@ -167,7 +161,7 @@
 			</div>
 			<div class="span3 alignR">
 			<form class="form-horizontal qtyFrm">
-				<h3> ${{ prod.item_desc.price }}</h3>
+				<h3> &#8377;{{ prod.item_desc.price }}</h3>
 
 
 			</form>
@@ -200,7 +194,19 @@
 </div>
 <!-- MainBody End -->
 <!-- Footer -->
-	<div  id="footerSection">
+	<style>
+	.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+	}
+	</style>
+
+	<div  id="footerSection" class="footer">
 	<div class="container">
 		<p class="pull-right">&copy; ReCell</p>
 	</div>

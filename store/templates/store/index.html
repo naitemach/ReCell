@@ -87,7 +87,7 @@
 </div>
 <!-- Header End -->
 <!-- Main content -->
-<div id="carouselBlk">
+<!-- <div id="carouselBlk">
 	<div id="myCarousel" class="carousel slide">
 		<div class="carousel-inner">
 		  <div class="item active">
@@ -148,7 +148,7 @@
 		  </div>
 		</div>
 	  </div> 
-</div>
+</div> -->
 <div id="mainBody">
 	<div class="container">
 	<div class="row">
@@ -158,10 +158,10 @@
 		<ul id="sideManu" class="nav nav-tabs nav-stacked">
 			<li class="subMenu open"><a> CATEGORIES</a>
 				<ul>
-				<li><a class="active" href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Electronics</a></li>
-				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Hobby Equipment</a></li>
-				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Vehicles</a></li>
-				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Books</a></li>
+				<li><a class="active" href="/catResults/?inv_id={{ 1 }}"><i class="icon-chevron-right"></i>Electronics</a></li>
+				<li><a href="/catResults/?inv_id={{ 2 }}"><i class="icon-chevron-right"></i>Hobby Equipment</a></li>
+				<li><a href="/catResults/?inv_id={{ 3 }}"><i class="icon-chevron-right"></i>Vehicles</a></li>
+				<li><a href="/catResults/?inv_id={{ 4 }}"><i class="icon-chevron-right"></i>Books</a></li>
 
 				</ul>
 			</li>
@@ -172,59 +172,36 @@
 <!-- Sidebar end -->
 		<div class="span9">		
 			<div class="well well-small">
-			<h4>Featured Products <small class="pull-right">200+ featured products</small></h4>
+			<h4>Recommended Products <small class="pull-right">4+ products recommended for you</small></h4>
 			<div class="row-fluid">
 			<div id="featured">
 			  <div class="item active">
 			  <ul class="thumbnails">
+
 				<li class="span3">
 				  <div class="thumbnail">
 				  <i class="tag"></i>
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b1.jpg' %}" alt=""></a>
 					<div class="caption">
 					  <h5>Product Name</h5>
-					  <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$200</span></h4>
+					  <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">&#8377;200</span></h4>
 					</div>
 				  </div>
 				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-				  <i class="tag"></i>
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b2.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					  <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-				  <i class="tag"></i>
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b3.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					   <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
-				<li class="span3">
-				  <div class="thumbnail">
-				  <i class="tag"></i>
-					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b4.jpg' %}" alt=""></a>
-					<div class="caption">
-					  <h5>Product name</h5>
-					   <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">$222.00</span></h4>
-					</div>
-				  </div>
-				</li>
+
 			  </ul>
 			  </div>
 		</div>
 		</div>
 	</div>
-		<h4>Latest Products </h4>
-			  <ul class="thumbnails">
-                  {% for prod in prods1 %}
+
+	<div class="well well-small" style="padding-left: 30px" >
+		<h4>All Products </h4>
+		<div style="padding-left: 105px">	  
+			<ul class="thumbnails" >
+                  {% for prod in prods %}
+                   {% if prod.item_status == 0  %}
+
 				<li class="span3">
 				  <div class="thumbnail">
 					<a  href="/productDetails/?item={{ prod.item_id }}"><img src="{% static 'store/themes/images/products/6.jpg' %}" alt=""/></a>
@@ -234,61 +211,19 @@
 						{{ prod.item_desc.comments }}
 					  </p>
 					 
-					  <h4 style="text-align:center"><a class="btn" href="cart/?item={{ prod.item_id }}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="cart/?item={{ prod.item_id }}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="/productDetails/?item={{ prod.item_id }}">${{ prod.item_desc.price }}</a></h4>
+					  <h4 style="text-align:center"> <a class="btn" href="cart/?item={{ prod.item_id }}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="/productDetails /?item={{ prod.item_id }}">&#8377;{{ prod.item_desc.price }}</a></h4>
 					</div>
 				  </div>
 				</li>
+				{% endif %}
                   {% endfor %}
-                {% for prod in prods2 %}
-				<li class="span3">
-				  <div class="thumbnail">
-					<a  href="/productDetails/?item={{ prod.item_id }}"><img src="{% static 'store/themes/images/products/6.jpg' %}" alt=""/></a>
-					<div class="caption">
-					  <h5>{{ prod.item_desc.name }}</h5>
-					  <p>
-						{{ prod.item_desc.comments }}
-					  </p>
+			</ul>	
 
-					  <h4 style="text-align:center"><a class="btn" href="cart/?item={{ prod.item_id }}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="cart/?item={{ prod.item_id }}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="/productDetails/?item={{ prod.item_id }}">${{ prod.item_desc.price }}</a></h4>
-					</div>
-				  </div>
-				</li>
-                  {% endfor %}
-                {% for prod in prods3 %}
-				<li class="span3">
-				  <div class="thumbnail">
-					<a  href="/productDetails/?item={{ prod.item_id }}"><img src="{% static 'store/themes/images/products/6.jpg' %}" alt=""/></a>
-					<div class="caption">
-					  <h5>{{ prod.item_desc.name }}</h5>
-					  <p>
-						{{ prod.item_desc.comments }}
-					  </p>
-
-					  <h4 style="text-align:center"><a class="btn" href="cart/?item={{ prod.item_id }}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="cart/?item={{ prod.item_id }}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="/productDetails/?item={{ prod.item_id }}">${{ prod.item_desc.price }}</a></h4>
-					</div>
-				  </div>
-				</li>
-                  {% endfor %}
-                {% for prod in prods4 %}
-				<li class="span3">
-				  <div class="thumbnail">
-					<a  href="/productDetails/?item={{ prod.item_id }}"><img src="{% static 'store/themes/images/products/6.jpg' %}" alt=""/></a>
-					<div class="caption">
-					  <h5>{{ prod.item_desc.name }}</h5>
-					  <p>
-						{{ prod.item_desc.comments }}
-					  </p>
-
-					  <h4 style="text-align:center"><a class="btn" href="cart/?item={{ prod.item_id }}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="cart/?item={{ prod.item_id }}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="/productDetails/?item={{ prod.item_id }}">${{ prod.item_desc.price }}</a></h4>
-					</div>
-				  </div>
-				</li>
-                  {% endfor %}
-			  </ul>	
-
-		</div>
 		</div>
 	</div>
+		</div>
+	</div>
+</div>
 </div>
 <!-- Footer -->
 	<div  id="footerSection">

@@ -102,18 +102,19 @@
 		<ul id="sideManu" class="nav nav-tabs nav-stacked">
 			<li class="subMenu open"><a> CATEGORIES</a>
 				<ul>
-				<li><a class="active" href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Electronics</a></li>
-				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Hobby Equipment</a></li>
-				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Vehicles</a></li>
-				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Books</a></li>
+				<li><a class="active" href="/catResults/?inv_id={{ 1 }}"><i class="icon-chevron-right"></i>Electronics</a></li>
+				<li><a href="/catResults/?inv_id={{ 2 }}"><i class="icon-chevron-right"></i>Hobby Equipment</a></li>
+				<li><a href="/catResults/?inv_id={{ 3 }}"><i class="icon-chevron-right"></i>Vehicles</a></li>
+				<li><a href="/catResults/?inv_id={{ 4 }}"><i class="icon-chevron-right"></i>Books</a></li>
 
 				</ul>
 			</li>
 
-        </ul>
+		</ul>
 
 	</div>
 <!-- Sidebar end -->
+
 	<div class="span9">
     <ul class="breadcrumb">
 		<li><a href="{% static 'store/index.html' %}">Home</a> <span class="divider">/</span></li>

@@ -47,12 +47,6 @@
 </a>
   <div class="navbar-inner">
     <a class="brand" href="{% url 'index' %}"><img style="width:120px; height:45px" src="{% static 'store/themes/images/logo.png' %}" alt="ReCell"/></a>
-    <form class="form-inline navbar-search" method="get" action="{% url 'search' %}" >
-    {% csrf_token %}
-
-    <input id="id_search" class="srchTxt" type="text" name="search" value="{{ query }}" />
-    <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
-    </form>
     <ul id="topMenu" class="nav pull-right">
 	 <li class=""><a href="" id = "link1"></a></li>
 	 <li class="">

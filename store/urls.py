@@ -10,6 +10,7 @@ urlpatterns = [
     re_path(r'^catResults/$', views.catResults, name='catResults'),
     path('catResults', views.catResults, name='catResults'),
     path('orders', views.orders, name='orders'),
+    re_path(r'^orders/$',views.orders,name='orders'),
     path('sales', views.sales, name='sales'),
     path('login', views.login, name='login'),
     path('display', views.display, name='display'),

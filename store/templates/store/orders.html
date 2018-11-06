@@ -127,15 +127,12 @@
 				<p>
 				{{ item.item_desc.comments }}
 				</p>
-				<a class="btn btn-small pull-right" href="{% url 'productDetails' %}">View Details</a>
+				<a class="btn btn-small pull-right" href="/productDetails/?item={{ item.item_id }}">View Details</a>
 				<br class="clr"/>
 			</div>
 			<div class="span3 alignR">
 			<form class="form-horizontal qtyFrm">
-			<h3> ${{ item.item_desc.price }}</h3>
-			  <a href="{% url 'productDetails' %}" class="btn btn-large btn-danger"> Cancel </a>
-			  <a href="{% url 'productDetails' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
-
+			<h3> &#8377;{{ item.item_desc.price }}</h3>
 				</form>
 			</div>
 
