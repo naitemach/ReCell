@@ -134,36 +134,22 @@
                   <th>Description</th>
                     <th>Cancel</th>
 				  <th>Price</th>
-                  <th>Discount</th>
-                  <th>Tax</th>
-                  <th>Total</th>
 				</tr>
               </thead>
               <tbody>
               {% for prod in prods %}
                 <tr>
                   <td> <img width="60" src="{% static 'store/themes/images/products/4.jpg' %}" alt=""/></td>
-                  <td>{{ prod.item_desc.name }}<br/>Seller : {{ prod.item_inventory.category }}</td>
+                  <td>{{ prod.item_desc.name }}<br/>Category : {{ prod.item_inventory.category }}</td>
                     <td>
-					<div class="input-append"><a href="/cart/?item={{ prod.item_id }}&cancel=1" ><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button>				</div>
+					<div class="input-append"><a href="/cart/?item={{ prod.item_id }}&cancel=1" ><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button></div>
 				  </td>
-                  <td>&#8377;{{ prod.item_desc.price }}</td>
-                  <td>&#8377;0</td>
-                  <td>&#8377;0</td>
                   <td>&#8377;{{ prod.item_desc.price }}</td>
                 </tr>
               {%  endfor %}
                 <tr>
                   <td colspan="6" style="text-align:right">Total Price:	</td>
                   <td> {{ total }}</td>
-                </tr>
-				 <tr>
-                  <td colspan="6" style="text-align:right">Total Discount:	</td>
-                  <td> &#8377;0.00</td>
-                </tr>
-                 <tr>
-                  <td colspan="6" style="text-align:right">Total Tax:	</td>
-                  <td> &#8377;0.00</td>
                 </tr>
 				 <tr>
                   <td colspan="6" style="text-align:right"><strong>TOTAL =</strong></td>

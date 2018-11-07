@@ -19,7 +19,9 @@ def login(request):
 				order_obj = Order.objects.filter(b_id=id)
 				request.session.flush()
 				cart = []
+				clicked = {}
 				request.session['cart'] = cart
+				request.session['visited'] = clicked
 				request.session['email'] = email
 				request.session['first_name'] = user_obj.get().first_name
 				request.session['id'] = user_obj.get().u_id
@@ -27,12 +29,20 @@ def login(request):
 				request.session['items'] = len(cart)
 				request.session['is_seller'] = user_obj.get().is_seller
 				prods=Item.objects.all()
+				fprods = []
+				inv_id = 1
+				inv = request.session.get('visited')
+				if (inv) :
+					inv_id = max(inv,key=inv.get)
+				if request.session.get('cart') is not None:
+					items = len(request.session.get('cart'))
+				fprods=Item.objects.filter(item_inventory=inv_id)
 				if request.session['is_seller'] == 1:
 					seller_obj = User.objects.get(u_id=id)
 					prods = Item.objects.filter(item_seller=seller_obj)
 					return render(request, 'store/sales.html',
 								  {'first_name': request.session['first_name'], 'credits': request.session['credits'], 'is_seller': 1,
-								   'prods': prods,'id':request.session['id']})
+								   'prods': prods,'id':request.session['id'],'fprods':fprods})
 
 				else:
 					if order_obj.exists():
@@ -41,7 +51,7 @@ def login(request):
 																	'items': len(cart),
 																	'id': request.session['id'],
 																	'is_seller': request.session['is_seller'],
-																	'prods': prods})
+																	'prods': prods,'fprods':fprods})
 					else:
 						request.session['items'] = 0
 						return render(request, 'store/index.html', {'first_name': request.session['first_name'],
@@ -49,7 +59,7 @@ def login(request):
 																	'items': len(cart),
 																	'id': request.session['id'],
 																	'is_seller': request.session['is_seller'],
-																	'prods': prods})
+																	'prods': prods,'fprods':fprods})
 			error = "Account does not exists. Please register"
 			return render(request, 'store/login.html', {'form': form, 'error': error})
 	else:
@@ -62,18 +72,25 @@ def index(request):
 	credits = request.session.get('credits')
 	items = 0
 	prods=[]
+	fprods = []
+	inv_id = 1
+	inv = request.session.get('visited')
+	if inv != {} :
+		print(inv)
+		inv_id = int(max(inv,key=inv.get))
+		print(inv)
 	if request.session.get('cart') is not None:
 		items = len(request.session.get('cart'))
 	id = request.session.get('id')
 	is_seller = request.session.get('is_seller')
 	prods=Item.objects.all()
-
+	fprods=Item.objects.filter(item_inventory=inv_id)
 	if fname != None and credits != None:
 		return render(request, 'store/index.html',
 					  {'first_name': fname, 'credits': credits, 'items': items, 'is_seller': is_seller, 'id': id,
-					   'prods': prods})
+					   'prods': prods,'fprods':fprods})
 	else:
-		return render(request, 'store/index.html',{'prods': prods})
+		return render(request, 'store/index.html',{'prods': prods,'fprods':fprods})
 
 
 def catResults(request):
@@ -84,7 +101,6 @@ def catResults(request):
 	if request.method == 'GET':
 		inv_id = request.GET.get('inv_id')
 		inv= Inventory.objects.get(inv_id=inv_id)
-		print(inv.category)
 		if inv_id:
 			prods=Item.objects.filter(item_inventory=inv_id)
 			return render(request, 'store/cat_results.html', {'first_name': fname, 'credits': credits, 'items': items, 'prods':prods, 'inv':inv,'id':id})
@@ -98,6 +114,7 @@ def productDetails(request):
 	items = len(request.session.get('cart'))
 	id = request.session.get('id')
 	if request.method == 'GET':
+		a = request.session.get('visited')
 		item_id = request.GET.get('item')
 		if not item_id:
 			if fname != None and credits != None:
@@ -106,9 +123,21 @@ def productDetails(request):
 			else:
 				return HttpResponse("Fname couldnt be passes succesfully")
 		else:
-			item = Item.objects.get(item_id = item_id)
+			item_obj = Item.objects.get(item_id=item_id)
+			inv_id = str(item_obj.item_inventory.inv_id)
+			if request.session['visited'] == {}:
+				request.session['visited'][inv_id] = 1
+				print(request.session['visited'],"1")
+			else:
+				if inv_id not in list(request.session['visited'].keys()):
+					request.session['visited'][inv_id] = 1
+					print(request.session['visited'],"2")
+				else:
+					request.session['visited'][inv_id] += 1
+					print(request.session['visited'],"3")
+			request.session.modified = True
 			return render(request, 'store/product_details.html',
-							  {'first_name': fname, 'credits': credits, 'items': items, 'prod':item,'id':id})
+							  {'first_name': fname, 'credits': credits, 'items': items, 'prod':item_obj,'id':id})
 
 def register(request):
 	if request.method == 'POST':
@@ -166,7 +195,6 @@ def search(request):
 		desc = ItemDesc.objects.filter(name=search_query)
 		for d in desc:
 			item.append(Item.objects.get(item_desc_id=d.item_desc_id))
-		# print(item)
 	items = 0
 	if request.session.get('cart') is not None:
 		items = len(request.session.get('cart'))
@@ -286,18 +314,20 @@ def cart(request):
 			else:
 				return HttpResponse("Fname couldnt be pass succesfully")
 
-		# if len(cart) != 0:
-		# 	for id in cart:
-		# 		item = Item.objects.get(item_id=id)
-		# 		inv_ids.append(item.item_inventory)
-		# 	freq = Counter(inv_ids)
-		# 	mc = freq.most_common(1)
-		# 	inv_id = mc[0][0]
-		# 	return render(request, 'store/index.html',
-		# 				  {'first_name': fname, 'credits': credits, 'items': items, 'prods': prods,'total':total,'id':id1, 'inv_id':inv_id})
-
-
 		else:
+			item_obj = Item.objects.get(item_id=item_id)
+			inv_id = str(item_obj.item_inventory.inv_id)
+			if request.session['visited'] == {}:
+				request.session['visited'][inv_id] = 1
+				print(request.session['visited'],"1")
+			else:
+				if inv_id not in list(request.session['visited'].keys()):
+					request.session['visited'][inv_id] = 1
+					print(request.session['visited'],"2")
+				else:
+					request.session['visited'][inv_id] += 1
+					print(request.session['visited'],"3")
+			request.session.modified = True
 			if item_id not in cart:
 				cart.append(item_id)
 				request.session['cart'] = cart

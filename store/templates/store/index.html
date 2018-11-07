@@ -54,7 +54,7 @@
     <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
     </form>
     <ul id="topMenu" class="nav pull-right">
-	 <li class=""><a href="" id = "link1"></a></li>
+	 <li class=""><a href="" id = "link1" style="display: block;"></a></li>
 	 <li class="">
 	 	<script type="text/javascript">
 	 		function testfunc(){
@@ -65,6 +65,7 @@
 	 		}
 	 		else{
 	 			document.getElementById('testingthis').innerHTML="LOGIN";
+	 			document.getElementById('link1').style="display:none;";
 	 		}
 	 		if(is_seller == 1){
 	 			document.getElementById("link1").innerHTML="Add Item";
@@ -172,23 +173,27 @@
 <!-- Sidebar end -->
 		<div class="span9">		
 			<div class="well well-small">
+
 			<h4>Recommended Products <small class="pull-right">4+ products recommended for you</small></h4>
 			<div class="row-fluid">
 			<div id="featured">
 			  <div class="item active">
 			  <ul class="thumbnails">
+				{% for prod in fprods %}
+                	{% if prod.item_status == 0  %}
 
 				<li class="span3">
 				  <div class="thumbnail">
 				  <i class="tag"></i>
 					<a href="{% static 'store/product' %}_details.html"><img src="{% static 'store/themes/images/products/b1.jpg' %}" alt=""></a>
 					<div class="caption">
-					  <h5>Product Name</h5>
-					  <h4><a class="btn" href="{% url 'productDetails' %}">VIEW</a> <span class="pull-right">&#8377;200</span></h4>
+					  <h5>{{ prod.item_desc.name }}</h5>
+					  <h4><a class="btn" href="/productDetails/?item={{ prod.item_id }}">VIEW</a> <span class="pull-right">&#8377;{{ prod.item_desc.price }}</span></h4>
 					</div>
 				  </div>
 				</li>
-
+					{% endif %}
+                {% endfor %}
 			  </ul>
 			  </div>
 		</div>
