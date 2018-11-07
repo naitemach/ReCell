@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import LoginForm, RegisterForm, ProdRegistration
+from .forms import LoginForm, RegisterForm, ProdRegistration, PriceForm
 from .models import *
 from django.db import connection
 from collections import Counter
-
+locs = Location.objects.all()
 def login(request):
 	request.session.flush()
 	if request.method == 'POST':
@@ -42,7 +42,7 @@ def login(request):
 					prods = Item.objects.filter(item_seller=seller_obj)
 					return render(request, 'store/sales.html',
 								  {'first_name': request.session['first_name'], 'credits': request.session['credits'], 'is_seller': 1,
-								   'prods': prods,'id':request.session['id'],'fprods':fprods})
+								   'prods': prods,'id':request.session['id'],'fprods':fprods,'locs':locs})
 
 				else:
 					if order_obj.exists():
@@ -51,7 +51,7 @@ def login(request):
 																	'items': len(cart),
 																	'id': request.session['id'],
 																	'is_seller': request.session['is_seller'],
-																	'prods': prods,'fprods':fprods})
+																	'prods': prods,'fprods':fprods,'locs':locs})
 					else:
 						request.session['items'] = 0
 						return render(request, 'store/index.html', {'first_name': request.session['first_name'],
@@ -59,7 +59,7 @@ def login(request):
 																	'items': len(cart),
 																	'id': request.session['id'],
 																	'is_seller': request.session['is_seller'],
-																	'prods': prods,'fprods':fprods})
+																	'prods': prods,'fprods':fprods,'locs':locs})
 			error = "Account does not exists. Please register"
 			return render(request, 'store/login.html', {'form': form, 'error': error})
 	else:
@@ -88,7 +88,7 @@ def index(request):
 	if fname != None and credits != None:
 		return render(request, 'store/index.html',
 					  {'first_name': fname, 'credits': credits, 'items': items, 'is_seller': is_seller, 'id': id,
-					   'prods': prods,'fprods':fprods})
+					   'prods': prods,'fprods':fprods,'locs':locs})
 	else:
 		return render(request, 'store/index.html',{'prods': prods,'fprods':fprods})
 
@@ -103,10 +103,40 @@ def catResults(request):
 		inv= Inventory.objects.get(inv_id=inv_id)
 		if inv_id:
 			prods=Item.objects.filter(item_inventory=inv_id)
-			return render(request, 'store/cat_results.html', {'first_name': fname, 'credits': credits, 'items': items, 'prods':prods, 'inv':inv,'id':id})
+			return render(request, 'store/cat_results.html', {'first_name': fname, 'credits': credits, 'items': items, 'prods':prods, 'inv':inv,'id':id,'locs':locs})
 	else:
 		return HttpResponse("Fname couldnt be passes succesfully")
 
+def locResults(request):
+	fname = request.session.get('first_name')
+	credits = request.session.get('credits')
+	items = len(request.session.get('cart'))
+	id = request.session.get('id')
+	if request.method == 'GET':
+		loc_id = request.GET.get('loc_id')
+		if loc_id:
+			prods=Item.objects.filter(item_location_id=loc_id)
+			return render(request, 'store/cat_results.html', {'first_name': fname, 'credits': credits, 'items': items, 'prods':prods,'id':id,'locs':locs})
+	else:
+		return HttpResponse("Fname couldnt be passes succesfully")
+
+def priceResults(request):
+	fname = request.session.get('first_name')
+	credits = request.session.get('credits')
+	items = len(request.session.get('cart'))
+	id = request.session.get('id')
+	if request.method == 'POST':
+		prods=[]
+		form = PriceForm(request.POST)
+		if form.is_valid():
+			minp=form .cleaned_data['minPrice']
+			maxp=form.cleaned_data['maxPrice']
+			prods_desc=ItemDesc.objects.filter(price__gte=minp,price__lte=maxp)
+			for pd in prods_desc:
+				prods.append(Item.objects.get(item_desc=pd))
+			return render(request, 'store/cat_results.html', {'first_name': fname, 'credits': credits, 'items': items, 'prods':prods,'id':id,'locs':locs})
+	else:
+		return HttpResponse("Fname couldnt be passes succesfully")
 
 def productDetails(request):
 	fname = request.session.get('first_name')
@@ -269,7 +299,7 @@ def cart(request):
 		checkout = request.GET.get('checkout')
 		cancel = request.GET.get('cancel')
 		if checkout:
-			if int(checkout) == 1 and credits > total:
+			if int(checkout) == 1 and credits >= total:
 				ord = Order.objects.create(b_id_id=request.session['id'])
 				for it in prods:
 					ord.items.add(it)

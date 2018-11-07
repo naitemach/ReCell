@@ -105,25 +105,21 @@
 			</li>
 
 		</ul>
+		<ul id="sideManu" class="nav nav-tabs nav-stacked">
+			<li class="subMenu open"><a> LOCATIONS</a>
+				<ul>
+					{% for loc in locs %}
+				<li><a class="active" href="/locResults/?loc_id={{ loc.lid }}"><i class="icon-chevron-right"></i>{{ loc.city_name }}</a></li>
+				{% endfor %}
+				</ul>
+			</li>
+		</ul>
 
 	</div>
 <!-- Sidebar end -->
 
 	<div class="span9">
 	<h3> {{inv.category}}</h3>
-	<hr class="soft"/>
-	<form class="form-horizontal span6">
-		<div class="control-group">
-		  <label class="control-label alignL">Sort By </label>
-			<select>
-              <option>Product name A - Z</option>
-              <option>Product name Z - A</option>
-              <option>Price Highest - Lowest</option>
-              <option>Price Lowest  Highest</option>
-            </select>
-		</div>
-	  </form>
-
 
 <br class="clr"/>
 <div class="tab-content">
@@ -135,13 +131,13 @@
 			{% if prod.item_status == 0 %}
 			<li class="span3">
 			  <div class="thumbnail">
-				<a href="{% static 'store/product_details.html' %}"><img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/></a>
+				<a href="productDetails/?item={{ prod.item_id }}"><img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/></a>
 				<div class="caption">
 				  <h5>{{prod.item_desc.name}}</h5>
 				  <p>
 					{{prod.item_desc.comments}}
 				  </p>
-				   <h4 style="text-align:center"><a class="btn" href="{% static 'store/product_details.html' %}"> <i class="icon-zoom-in"></i></a> <a class="btn" href="{% static 'store/#' %}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="{% static 'store/#' %}">&#8377;{{prod.item_desc.price}}</a></h4>
+				    <h4 style="text-align:center"> <a class="btn" href="cart/?item={{ prod.item_id }}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="/productDetails/?item={{ prod.item_id }}">&#8377;{{ prod.item_desc.price }}</a></h4>
 				</div>
 			  </div>
 			</li>
@@ -151,18 +147,6 @@
 	<hr class="soft"/>
 	</div>
 </div>
-	<div class="pagination">
-			<ul>
-			<li><a href="{% static 'store/#' %}">&lsaquo;</a></li>
-			<li><a href="{% static 'store/#' %}">1</a></li>
-			<li><a href="{% static 'store/#' %}">2</a></li>
-			<li><a href="{% static 'store/#' %}">3</a></li>
-			<li><a href="{% static 'store/#' %}">4</a></li>
-			<li><a href="{% static 'store/#' %}">...</a></li>
-			<li><a href="{% static 'store/#' %}">&rsaquo;</a></li>
-			</ul>
-			</div>
-			<br class="clr"/>
 </div>
 </div>
 </div>

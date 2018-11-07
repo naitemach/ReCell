@@ -110,11 +110,7 @@
 <!-- Sidebar end -->
 
 	<div class="span9">
-    <ul class="breadcrumb">
-    <li><a href="{% static 'store/index.html' %}">Home</a> <span class="divider">/</span></li>
-    <li><a href="{% static 'store/products.html' %}">Products</a> <span class="divider">/</span></li>
-    <li class="active">product Details</li>
-    </ul>	
+	
 	<div class="row">	  
 			<div id="gallery" class="span3">
             <a href="{% static 'store/themes/images/products/large/f1.jpg' %}" title="Fujfilm FinePix S2950 Digital Camera">
@@ -200,6 +196,11 @@
 				<hr class="soft"/>
 				<form class="form-horizontal qtyFrm">
 				  <div class="control-group">
+				  	<p>
+					  	<strong>category : </strong>{{ prod.item_inventory.category }}<br>
+					  	<strong>seller : </strong>{{ prod.item_seller.first_name }}<br>
+					  	<strong>location : </strong>{{ prod.item_location.city_name }}<br>
+					 </p>
 					<label class="control-label"><span>&#8377;{{ prod.item_desc.price }}</span></label>
 					<div class="controls">
                     <a href="/cart/?item={{ prod.item_id }}"
