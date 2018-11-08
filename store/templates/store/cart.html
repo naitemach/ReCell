@@ -59,6 +59,7 @@
 	 	<script type="text/javascript">
 	 		function testfunc(){
 	 		var id = "{{id}}"
+	 		var len = "{{items}}"
 	 		var is_seller = "{{is_seller}}"
 	 		if (id){
 	 			document.getElementById("testingthis").innerHTML="LOGOUT";
@@ -76,6 +77,13 @@
 	 			document.getElementById("link1").href="{% url 'orders'%}";
 
 	 		}
+	 		if(len == 0){
+	 			document.getElementById("C1").style="display:none;";
+	 		}
+	 		else{
+	 			document.getElementById("C1").style="display:block;";
+
+	 		}
 	 	}
 	 	</script>
 	 <a href="{% url 'login' %}" role="button" data-toggle="modal" style="padding-right:0"><span class="btn btn-large btn-success" id = "testingthis"></span></a>
@@ -88,6 +96,12 @@
 <!-- Header End -->
 <!-- Main content -->
 <div id="mainBody">
+	{% if mssg %}
+		<script type="text/javascript">
+			var mssg= "{{ mssg }}";
+			alert(mssg);
+		</script>
+	{% endif %}
 	<div class="container">
 	<div class="row">
 <!-- Sidebar -->
@@ -96,10 +110,10 @@
 		<ul id="sideManu" class="nav nav-tabs nav-stacked">
 			<li class="subMenu open"><a> CATEGORIES</a>
 				<ul>
-				<li><a class="active" href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Electronics</a></li>
-				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Hobby Equipment</a></li>
-				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Vehicles</a></li>
-				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Books</a></li>
+				<li><a class="active" href="/catResults/?inv_id={{ 1 }}"><i class="icon-chevron-right"></i>Electronics</a></li>
+				<li><a href="/catResults/?inv_id={{ 2 }}"><i class="icon-chevron-right"></i>Hobby Equipment</a></li>
+				<li><a href="/catResults/?inv_id={{ 3 }}"><i class="icon-chevron-right"></i>Vehicles</a></li>
+				<li><a href="/catResults/?inv_id={{ 4 }}"><i class="icon-chevron-right"></i>Books</a></li>
 
 				</ul>
 			</li>
@@ -108,6 +122,7 @@
 
 	</div>
 <!-- Sidebar end -->
+
 	<div class="span9">
 	<h3>  SHOPPING CART [ <small>{{items}} Item(s) </small>]<a href="{% url 'index' %}" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>	
 	<hr class="soft"/>
@@ -119,36 +134,22 @@
                   <th>Description</th>
                     <th>Cancel</th>
 				  <th>Price</th>
-                  <th>Discount</th>
-                  <th>Tax</th>
-                  <th>Total</th>
 				</tr>
               </thead>
               <tbody>
               {% for prod in prods %}
                 <tr>
                   <td> <img width="60" src="{% static 'store/themes/images/products/4.jpg' %}" alt=""/></td>
-                  <td>{{ prod.item_desc.name }}<br/>Seller : {{ prod.item_inventory.category }}</td>
+                  <td>{{ prod.item_desc.name }}<br/>Category : {{ prod.item_inventory.category }}</td>
                     <td>
-					<div class="input-append"><a href="/cart/?item={{ prod.item_id }}&cancel=1" ><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button>				</div>
+					<div class="input-append"><a href="/cart/?item={{ prod.item_id }}&cancel=1" ><button class="btn btn-danger" type="button"><i class="icon-remove icon-white"></i></button></div>
 				  </td>
-                  <td>${{ prod.item_desc.price }}</td>
-                  <td>$0</td>
-                  <td>$0</td>
-                  <td>${{ prod.item_desc.price }}</td>
+                  <td>&#8377;{{ prod.item_desc.price }}</td>
                 </tr>
               {%  endfor %}
                 <tr>
                   <td colspan="6" style="text-align:right">Total Price:	</td>
                   <td> {{ total }}</td>
-                </tr>
-				 <tr>
-                  <td colspan="6" style="text-align:right">Total Discount:	</td>
-                  <td> $0.00</td>
-                </tr>
-                 <tr>
-                  <td colspan="6" style="text-align:right">Total Tax:	</td>
-                  <td> $0.00</td>
                 </tr>
 				 <tr>
                   <td colspan="6" style="text-align:right"><strong>TOTAL =</strong></td>
@@ -157,10 +158,7 @@
 				</tbody>
             </table>
 		
-	<a href="{% url 'index' %}" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
-
-	<a href="/cart/?checkout=1" class="btn btn-large pull-right">Checkout <i class="icon-arrow-right"></i></a>
-
+	<a  href="/cart/?checkout=1" style="display: block;" id="C1" class="btn btn-large pull-right">Checkout <i class="icon-arrow-right"></i></a>
 </div>
 </div></div>
 </div>

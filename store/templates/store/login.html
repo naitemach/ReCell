@@ -46,14 +46,8 @@
 	<span class="icon-bar"></span>
 </a>
   <div class="navbar-inner">
-    <a class="brand" href="{% url 'index' %}"><img style="width:120px; height:45px" src="{% static 'store/themes/images/logo.png' %}" alt="ReCell"/></a>
-    <form class="form-inline navbar-search" method="get" action="{% url 'search' %}" >
-    {% csrf_token %}
-
-    <input id="id_search" class="srchTxt" type="text" name="search" value="{{ query }}" />
-    <button type="submit" id="submitButton" class="btn btn-primary">Go</button>
-    </form>
-    <ul id="topMenu" class="nav pull-right">
+    <a class="brand" href="{% url 'login' %}"><img style="width:120px; height:45px" src="{% static 'store/themes/images/logo.png' %}" alt="ReCell"/></a>
+   <ul id="topMenu" class="nav pull-right">
 	 <li class=""><a href="" id = "link1" style="display: block;"></a></li>
 	 <li class="">
 	 	<script type="text/javascript">
@@ -97,24 +91,7 @@
 <div id="mainBody">
 	<div class="container">
 	<div class="row">
-<!-- Sidebar -->
-	<div id="sidebar" class="span3">
 
-		<ul id="sideManu" class="nav nav-tabs nav-stacked">
-			<li class="subMenu open"><a> CATEGORIES</a>
-				<ul>
-				<li><a class="active" href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Electronics</a></li>
-				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Hobby Equipment</a></li>
-				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Vehicles</a></li>
-				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Books</a></li>
-
-				</ul>
-			</li>
-
-		<br/>
-
-	</div>
-<!-- Sidebar end -->
 	<div class="span9">
 	<h3> Login</h3>	
 	<hr class="soft"/>
@@ -141,7 +118,7 @@
 			  </div>
 			  <div class="control-group">
 				<div class="controls">
-				  <button type="submit" class="btn">Sign in</button> <a href="{% static 'store/forgetpass.html' %}">Forget password?</a>
+				  <button type="submit" class="btn-success">Sign in</button> <!-- <a href="{% static 'store/forgetpass.html' %}">Forget password?</a> -->
 				</div>
 			  </div>
 			</form>
@@ -150,14 +127,8 @@
 		<div class="span1"> &nbsp;</div>
 		<div class="span4">
 			<div class="well">
-			<h5>NOT REGISTERED?</h5>Enter your e-mail address to create an account.<br/><br/>
+			<h5>NOT REGISTERED?</h5>Click here to create an account.<br/><br/>
 			<form action={% url 'register' %}>
-			  <div class="control-group">
-				<label class="control-label" for="inputEmail0">E-mail address</label>
-				<div class="controls">
-				  <input class="span3"  type="text" id="inputEmail0" placeholder="Email">
-				</div>
-			  </div>
 			  <div class="controls">
 			  <button type="submit" class="btn block">Create Your Account</button>
 			  </div>
@@ -166,11 +137,24 @@
 		</div>
 	</div>	
 </div>
-</div></div>
+</div>
+</div>
 </div>
 <!-- MainBody End -->
 <!-- Footer -->
-	<div  id="footerSection">
+	<style>
+	.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+	}
+	</style>
+
+	<div  id="footerSection" class="footer">
 	<div class="container">
 		<p class="pull-right">&copy; ReCell</p>
 	</div>

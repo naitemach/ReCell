@@ -5,7 +5,6 @@ class LoginForm(forms.Form):
     email = forms.EmailField(label='Email', max_length=100)
     password = forms.CharField(widget=forms.PasswordInput)
 
-
 class RegisterForm(forms.Form):
     first_name = forms.CharField(label='first_name', max_length=30)
     last_name = forms.CharField(label='last_name', max_length=30)
@@ -31,3 +30,7 @@ class ProdRegistration(forms.Form):
     zip_code = forms.IntegerField(label='zip_code')
     phone = forms.IntegerField(label='phone')
     price = forms.IntegerField(label='price')
+
+class PriceForm(forms.Form):
+    minPrice = forms.IntegerField(label='Min Price')
+    maxPrice = forms.IntegerField(label='Max Price')

@@ -96,228 +96,61 @@
 		<ul id="sideManu" class="nav nav-tabs nav-stacked">
 			<li class="subMenu open"><a> CATEGORIES</a>
 				<ul>
-				<li><a class="active" href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Electronics</a></li>
-				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Hobby Equipment</a></li>
-				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Vehicles</a></li>
-				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Books</a></li>
+				<li><a class="active" href="/catResults/?inv_id={{ 1 }}"><i class="icon-chevron-right"></i>Electronics</a></li>
+				<li><a href="/catResults/?inv_id={{ 2 }}"><i class="icon-chevron-right"></i>Hobby Equipment</a></li>
+				<li><a href="/catResults/?inv_id={{ 3 }}"><i class="icon-chevron-right"></i>Vehicles</a></li>
+				<li><a href="/catResults/?inv_id={{ 4 }}"><i class="icon-chevron-right"></i>Books</a></li>
 
 				</ul>
 			</li>
 
-		<br/>
+		</ul>
 
 	</div>
 <!-- Sidebar end -->
-	<div class="span9">
-	<h4> Search Results For :<small>Cameras</small><small class="pull-right"> 40 products are available </small></h4>
-	<hr class="soft"/>
 
-	<form class="form-horizontal span6">
-		<div class="control-group">
-		  <label class="control-label alignL">Sort By </label>
-			<select>
-              <option>Product name A - Z</option>
-              <option>Product name Z - A</option>
-              <option>Price Highest - Lowest</option>
-              <option>Price Lowest  Highest</option>
-            </select>
-		</div>
-	  </form>
+	<div class="span9">
+	<hr class="soft"/>
 
 <br class="clr"/>
 <div class="tab-content">
 	<div class="tab-pane active" id="listView">
+
+        {% for result in item  %}
+        {% if result.item_status == 0 %}
 		<div class="row">
 			<div class="span2">
 				<img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/>
 			</div>
 			<div class="span4">
-				<h3>New | Available</h3>
+				<h3>Available</h3>
 				<hr class="soft"/>
-				<h5>Product Name </h5>
+				<h5>{{ result.item_desc.name }}</h5>
 				<p>
-				Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies -
-				that is why our goods are so popular..
+				{{ result.item_desc.comments }}
 				</p>
-				<a class="btn btn-small pull-right" href="{% static 'store/product_details.html' %}">View Details</a>
+				<a class="btn btn-small pull-right" href="/productDetails/?item={{ result.item_id }}">View Details</a>
 				<br class="clr"/>
 			</div>
 			<div class="span3 alignR">
 			<form class="form-horizontal qtyFrm">
-			<h3> $140.00</h3>
-			<label class="checkbox">
-				<input type="checkbox">  Adds product to compair
-			</label><br/>
+			<h3> ${{ result.item_desc.price }}</h3>
 
-			  <a href="{% static 'store/product_details.html' %}" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
-			  <a href="{% static 'store/product_details.html' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
+			  <a class="btn" href="cart/?item={{result.item_id }}"> Add to <i class=" icon-shopping-cart"></i></a>
 
 				</form>
 			</div>
 		</div>
+		{% endif %}
+        {% endfor %}
 		<hr class="soft"/>
-		<div class="row">
-			<div class="span2">
-				<img src="{% static 'store/themes/images/products/1.jpg' %}" alt=""/>
-			</div>
-			<div class="span4">
-				<h3>New | Available</h3>
-				<hr class="soft"/>
-				<h5>Product Name </h5>
-				<p>
-				Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies -
-				that is why our goods are so popular..
-				</p>
-				<a class="btn btn-small pull-right" href="{% static 'store/product_details.html' %}">View Details</a>
-				<br class="clr"/>
-			</div>
-			<div class="span3 alignR">
-			<form class="form-horizontal qtyFrm">
-				<h3> $140.00</h3>
-				<label class="checkbox">
-				<input type="checkbox">  Adds product to compair
-				</label><br/>
 
-				<a href="{% static 'store/product_details.html' %}" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
-				<a href="{% static 'store/product_details.html' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
-
-			</form>
-			</div>
-		</div>
-		<hr class="soft"/>
-		<div class="row">
-			<div class="span2">
-				<img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/>
-			</div>
-			<div class="span4">
-				<h3>New | Available</h3>
-				<hr class="soft"/>
-				<h5>Product Name </h5>
-				<p>
-				Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies -
-				that is why our goods are so popular..
-				</p>
-				<a class="btn btn-small pull-right" href="{% static 'store/product_details.html' %}">View Details</a>
-				<br class="clr"/>
-			</div>
-			<div class="span3 alignR">
-			<form class="form-horizontal qtyFrm">
-				<h3> $140.00</h3>
-				<label class="checkbox">
-					<input type="checkbox">  Adds product to compair
-				</label><br/>
-
-				  <a href="{% static 'store/product_details.html' %}" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
-				  <a href="{% static 'store/product_details.html' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
-
-			</form>
-			</div>
-		</div>
-		<hr class="soft"/>
-		<div class="row">
-			<div class="span2">
-				<img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/>
-			</div>
-			<div class="span4">
-				<h3>New | Available</h3>
-				<hr class="soft"/>
-				<h5>Product Name </h5>
-				<p>
-				Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies -
-				that is why our goods are so popular..
-				</p>
-				<a class="btn btn-small pull-right" href="{% static 'store/product_details.html' %}">View Details</a>
-				<br class="clr"/>
-			</div>
-			<div class="span3 alignR">
-				<form class="form-horizontal qtyFrm">
-				<h3> $140.00</h3>
-				<label class="checkbox">
-				<input type="checkbox">  Adds product to compair
-				</label><br/>
-
-				<a href="{% static 'store/product_details.html' %}" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
-				<a href="{% static 'store/product_details.html' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
-
-				</form>
-			</div>
-		</div>
-
-		<hr class="soft"/>
-		<div class="row">
-			<div class="span2">
-				<img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/>
-			</div>
-			<div class="span4">
-				<h3>New | Available</h3>
-				<hr class="soft"/>
-				<h5>Product Name </h5>
-				<p>
-				Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies -
-				that is why our goods are so popular..
-				</p>
-				<a class="btn btn-small pull-right" href="{% static 'store/product_details.html' %}">View Details</a>
-				<br class="clr"/>
-			</div>
-			<div class="span3 alignR">
-				<form class="form-horizontal qtyFrm">
-				<h3> $140.00</h3>
-				<label class="checkbox">
-				<input type="checkbox">  Adds product to compair
-				</label><br/>
-				<a href="{% static 'store/product_details.html' %}" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
-				<a href="{% static 'store/product_details.html' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
-				</form>
-			</div>
-		</div>
-		<hr class="soft"/>
-		<div class="row">
-			<div class="span2">
-				<img src="{% static 'store/themes/images/products/3.jpg' %}" alt=""/>
-			</div>
-			<div class="span4">
-				<h3>New | Available</h3>
-				<hr class="soft"/>
-				<h5>Product Name </h5>
-				<p>
-				Nowadays the lingerie industry is one of the most successful business spheres.We always stay in touch with the latest fashion tendencies -
-				that is why our goods are so popular..
-				</p>
-				<a class="btn btn-small pull-right" href="{% static 'store/product_details.html' %}">View Details</a>
-				<br class="clr"/>
-			</div>
-			<div class="span3 alignR">
-				<form class="form-horizontal qtyFrm">
-				<h3> $140.00</h3>
-				<label class="checkbox">
-				<input type="checkbox">  Adds product to compair
-				</label><br/>
-
-				<a href="{% static 'store/product_details.html' %}" class="btn btn-large btn-primary"> Add to <i class=" icon-shopping-cart"></i></a>
-				<a href="{% static 'store/product_details.html' %}" class="btn btn-large"><i class="icon-zoom-in"></i></a>
-
-				</form>
-			</div>
-		</div>
 		<hr class="soft"/>
 	</div>
 
 
 </div>
-
-	<a href="{% static 'store/compair.html' %}" class="btn btn-large pull-right">Compair Product</a>
-	<div class="pagination">
-			<ul>
-			<li><a href="{% static 'store/#' %}">&lsaquo;</a></li>
-			<li><a href="{% static 'store/#' %}">1</a></li>
-			<li><a href="{% static 'store/#' %}">2</a></li>
-			<li><a href="{% static 'store/#' %}">3</a></li>
-			<li><a href="{% static 'store/#' %}">4</a></li>
-			<li><a href="{% static 'store/#' %}">...</a></li>
-			<li><a href="{% static 'store/#' %}">&rsaquo;</a></li>
-			</ul>
-			</div>
-			<br class="clr"/>
+	
 </div>
 </div>
 </div>

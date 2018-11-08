@@ -96,10 +96,10 @@
 		<ul id="sideManu" class="nav nav-tabs nav-stacked">
 			<li class="subMenu open"><a> CATEGORIES</a>
 				<ul>
-				<li><a class="active" href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Electronics</a></li>
-				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Hobby Equipment</a></li>
-				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Vehicles</a></li>
-				<li><a href="{% url 'catResults' %}"><i class="icon-chevron-right"></i>Books</a></li>
+				<li><a class="active" href="/catResults/?inv_id={{ 1 }}"><i class="icon-chevron-right"></i>Electronics</a></li>
+				<li><a href="/catResults/?inv_id={{ 2 }}"><i class="icon-chevron-right"></i>Hobby Equipment</a></li>
+				<li><a href="/catResults/?inv_id={{ 3 }}"><i class="icon-chevron-right"></i>Vehicles</a></li>
+				<li><a href="/catResults/?inv_id={{ 4 }}"><i class="icon-chevron-right"></i>Books</a></li>
 
 				</ul>
 			</li>
@@ -108,12 +108,9 @@
 
 	</div>
 <!-- Sidebar end -->
+
 	<div class="span9">
-    <ul class="breadcrumb">
-    <li><a href="{% static 'store/index.html' %}">Home</a> <span class="divider">/</span></li>
-    <li><a href="{% static 'store/products.html' %}">Products</a> <span class="divider">/</span></li>
-    <li class="active">product Details</li>
-    </ul>	
+	
 	<div class="row">	  
 			<div id="gallery" class="span3">
             <a href="{% static 'store/themes/images/products/large/f1.jpg' %}" title="Fujfilm FinePix S2950 Digital Camera">
@@ -157,7 +154,7 @@
 				<hr class="soft"/>
 				<form class="form-horizontal qtyFrm">
 				  <div class="control-group">
-					<label class="control-label"><span>$222.00</span></label>
+					<label class="control-label"><span>&#8377;222.00</span></label>
 					<div class="controls">
 					<a href="/cart/?item={{ prod.item_id }}"
 					   class="btn btn-large btn-primary pull-right"> Add to cart <i class=" icon-shopping-cart"></i></a>
@@ -199,7 +196,12 @@
 				<hr class="soft"/>
 				<form class="form-horizontal qtyFrm">
 				  <div class="control-group">
-					<label class="control-label"><span>${{ prod.item_desc.price }}</span></label>
+				  	<p>
+					  	<strong>category : </strong>{{ prod.item_inventory.category }}<br>
+					  	<strong>seller : </strong>{{ prod.item_seller.first_name }}<br>
+					  	<strong>location : </strong>{{ prod.item_location.city_name }}<br>
+					 </p>
+					<label class="control-label"><span>&#8377;{{ prod.item_desc.price }}</span></label>
 					<div class="controls">
                     <a href="/cart/?item={{ prod.item_id }}"
 					   class="btn btn-large btn-primary pull-right"> Add to cart <i class=" icon-shopping-cart"></i></a>
