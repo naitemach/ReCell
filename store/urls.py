@@ -5,7 +5,8 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.login, name='login'),
+    path('index', views.index, name='index'),
     path('searchResults', views.search, name='searchResults'),
     re_path(r'^catResults/$', views.catResults, name='catResults'),
     re_path(r'^catResults/productDetails/$', views.productDetails, name='productDetails'),

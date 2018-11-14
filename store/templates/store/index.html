@@ -223,7 +223,7 @@
 				</a></li>
 				<li><a>
 					<label for="id_maxPrice">Max Price</label><strong id="maxout"></strong>
-        			<input  class="slider1" type="range" name="maxPrice" id="id_maxPrice" value="48000" min="40000" max="60000">
+        			<input  class="slider1" type="range" name="maxPrice" id="id_maxPrice" value="500" min="500" max="60000">
 				</a></li>
 				<li><a>
         			<input  type="submit" style="border:none; color:white; margin-top: 8px; margin-bottom: 12px; background-color: #333; opacity: 0.7" data-inline="true" value="Submit">
@@ -295,9 +295,9 @@
 					<a  href="/productDetails/?item={{ prod.item_id }}"><img src="{% static 'store/themes/images/products/6.jpg' %}" alt=""/></a>
 					<div class="caption">
 					  <h5>{{ prod.item_desc.name }}</h5>
-					  <p> 
+					  <!-- <p> 
 						{{ prod.item_desc.comments }}
-					  </p>					 
+					  </p>	 -->				 
 					  <h4 style="text-align:center"> <a class="btn" href="cart/?item={{ prod.item_id }}">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="/productDetails/?item={{ prod.item_id }}">&#8377;{{ prod.item_desc.price }}</a></h4>
 					</div>
 				  </div>

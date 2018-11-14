@@ -22,6 +22,40 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'store/themes/images/ico/apple-touch-icon-72-precomposed.png' %}">
     <link rel="apple-touch-icon-precomposed" href="{% static 'store/themes/images/ico/apple-touch-icon-57-precomposed.png' %}">
 	<style type="text/css" id="enject"></style>
+	<style type="text/css">
+		
+		.slider1 {
+    		-webkit-appearance: none;
+    		width: 95%;
+    		height: 12px;
+    		border-radius: 5px;   
+    		background: #d3d3d3;
+    		outline: none;
+    		opacity: 0.7;
+    		-webkit-transition: .2s;
+    		transition: opacity .2s;
+		}
+		.slider1:hover {
+    		opacity: 1; 
+		}
+		.slider1::-webkit-slider-thumb {
+   			-webkit-appearance: none;
+    		appearance: none;
+    		width: 20px;
+    		height: 20px;
+    		border-radius: 50%; 
+    		background: #333;
+    		cursor: pointer;
+		}
+		.slider1::-moz-range-thumb {
+    		width: 20px;
+    		height: 20px;
+    		border-radius: 50%;
+    		background: #333;
+    		cursor: pointer;
+		}
+	</style>
+
 </head>
 
 <body onload="testfunc()">
@@ -100,13 +134,62 @@
 				<li><a href="/catResults/?inv_id={{ 2 }}"><i class="icon-chevron-right"></i>Hobby Equipment</a></li>
 				<li><a href="/catResults/?inv_id={{ 3 }}"><i class="icon-chevron-right"></i>Vehicles</a></li>
 				<li><a href="/catResults/?inv_id={{ 4 }}"><i class="icon-chevron-right"></i>Books</a></li>
-
+				<li><a><br></a></li>	
 				</ul>
 			</li>
 
 		</ul>
-
+		<ul id="sideManu" class="nav nav-tabs nav-stacked">
+			<li class="subMenu open"><a> LOCATIONS</a>
+				<ul>
+					{% for loc in locs %}
+				<li><a class="active" href="/locResults/?loc_id={{ loc.lid }}"><i class="icon-chevron-right"></i>{{ loc.city_name }}</a></li>
+				{% endfor %}
+				<li><a><br></a></li>	
+				</ul>
+			</li>
+		</ul>
+		<ul id="sideManu" class="nav nav-tabs nav-stacked">
+			<li class="subMenu open"><a> PRICE</a>
+			<form action="priceResults" method="post">
+			{% csrf_token %}
+  			<ul>
+  				<li><a>
+  					<label for="id_minPrice">Min Price</label><strong id="minout"></strong>
+       				<input  class="slider1" type="range" name="minPrice" id="id_minPrice" value="200" min="0" max="5000">
+				</a></li>
+				<li><a>
+					<label for="id_maxPrice">Max Price</label><strong id="maxout"></strong>
+        			<input  class="slider1" type="range" name="maxPrice" id="id_maxPrice" value="500" min="500" max="60000">
+				</a></li>
+				<li><a>
+        			<input  type="submit" style="border:none; color:white; margin-top: 8px; margin-bottom: 12px; background-color: #333; opacity: 0.7" data-inline="true" value="Submit">
+				</a></li>
+			</ul>
+			</form>
+			</li>
+		</ul>
 	</div>
+	<script type="text/javascript">
+
+		var slider1 = document.getElementById("id_minPrice");
+		var output1 = document.getElementById("minout");
+		output1.innerHTML = slider1.value; // Display the default slider value
+
+		slider1.oninput = function() {
+    		output1.innerHTML = this.value;
+		}
+
+		var slider2 = document.getElementById("id_maxPrice");
+		var output2 = document.getElementById("maxout");
+		output2.innerHTML = slider2.value; // Display the default slider value
+
+		slider2.oninput = function() {
+    		output2.innerHTML = this.value;
+		}
+
+	</script>
+
 <!-- Sidebar end -->
 
 	<div class="span9">
@@ -134,17 +217,6 @@
               <a class="right carousel-control" href="{% static 'store/#myCarousel' %}" data-slide="next">›</a> 
 			  -->
               </div>
-			  
-			 <div class="btn-toolbar">
-			  <div class="btn-group">
-				<span class="btn"><i class="icon-envelope"></i></span>
-				<span class="btn" ><i class="icon-print"></i></span>
-				<span class="btn" ><i class="icon-zoom-in"></i></span>
-				<span class="btn" ><i class="icon-star"></i></span>
-				<span class="btn" ><i class=" icon-thumbs-up"></i></span>
-				<span class="btn" ><i class="icon-thumbs-down"></i></span>
-			  </div>
-			</div>
 			</div>
             {% if prod == None %}
 			<div class="span6">

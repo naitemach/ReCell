@@ -167,7 +167,7 @@ def productDetails(request):
 					print(request.session['visited'],"3")
 			request.session.modified = True
 			return render(request, 'store/product_details.html',
-							  {'first_name': fname, 'credits': credits, 'items': items, 'prod':item_obj,'id':id})
+							  {'first_name': fname, 'credits': credits, 'items': items, 'prod':item_obj,'id':id,'locs':locs})
 
 def register(request):
 	if request.method == 'POST':
